@@ -1,9 +1,9 @@
 # Load the Module::Install bundled in ./inc/
-use inc::Module::Install;
+use inc::Module::Install '0.87';
 
 # Define metadata
 name            'Catalyst-Plugin-ErrorCatcher';
-version         '0.0.1';
+version         '0.0.2';
 all_from        'lib/Catalyst/Plugin/ErrorCatcher.pm';
 
 # Specific dependencies
@@ -12,11 +12,14 @@ build_requires  'Test::More'            => '0.72';
 requires(
     'Catalyst::Runtime'                 => 0,
     'version'                           => 0,   # core since 5.009
-    'Class::Accessor::Fast'             => 0,
+    'Class::Data::Accessor'             => 0,
     'IO::File'                          => 0,
     'MRO::Compat'                       => 0,
-    'Scalar::Util'                      => 0,
     'UNIVERSAL::can'                    => 0,
+);
+
+recommends(
+    'MIME::Lite'                        => '3.023',
 );
 
 auto_install;

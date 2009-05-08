@@ -3,46 +3,47 @@ package Catalyst::Plugin::ErrorCatcher;
 use strict;
 use warnings;
 use 5.008001;
-use base qw/Class::Accessor::Fast/;
+use base qw/Class::Data::Accessor/;
 use IO::File;
-use Scalar::Util qw/blessed/;
 use MRO::Compat;
 use UNIVERSAL::can;
 
-use version; our $VERSION = qv(0.0.1)->numify;
+use version; our $VERSION = qv(0.0.2)->numify;
 
-__PACKAGE__->mk_accessors(qw<_errorcatcher _errorcatcher_msg>);
+__PACKAGE__->mk_classaccessor(qw/_errorcatcher/);
+__PACKAGE__->mk_classaccessor(qw/_errorcatcher_msg/);
+__PACKAGE__->mk_classaccessor(qw/_errorcatcher_cfg/);
 
 sub setup {
-    my $c = shift;
+    my $c = shift @_;
+    my $config = $c->config->{'Plugin::ErrorCatcher'} || {};
 
-    # should we be replacing this?
+    $config->{context} ||= 4;
+    $config->{verbose} ||= 0;
+
+    $c->_errorcatcher_cfg( $config );
+
     $c->maybe::next::method(@_);
-
-    $c->config->{"Plugin::ErrorCatcher"}->{context} ||= 4;
-    $c->config->{"Plugin::ErrorCatcher"}->{verbose} ||= 0;
 }
 
 # implementation borrowed from ABERLIN
 sub finalize_error {
     my $c = shift;
-    my $conf = $c->config->{"Plugin::ErrorCatcher"};
+    my $conf = $c->_errorcatcher_cfg;
+
+    # finalize_error is only called when we have $c->error, so no need to test
+    # for it
 
     # this should let ::StackTrace do some of our heavy-lifting
     # and prepare the Devel::StackTrace frames for us to re-use
     $c->maybe::next::method(@_);
 
     if (
-        # we have an error
-        $c->error
-            and
-        (
-            # the config file insists we run
-            defined $conf->{enable} && $conf->{enable}
-                or
-            # we're in debug mode
-            !defined $conf->{enable} && $c->debug
-        )
+        # the config file insists we run
+        defined $conf->{enable} && $conf->{enable}
+            or
+        # we're in debug mode
+        !defined $conf->{enable} && $c->debug
     ) {
         $c->my_finalize_error;
     }
@@ -66,7 +67,7 @@ sub _emit_message {
         unless defined($c->_errorcatcher_msg);
 
     # use a custom emit method?
-    if (defined (my $emit_list = $c->config->{"Plugin::ErrorCatcher"}->{emit_module})) {
+    if (defined (my $emit_list = $c->_errorcatcher_cfg->{emit_module})) {
         my @emit_list;
         # one item or a list?
         if (defined ref($emit_list) and 'ARRAY' eq ref($emit_list)) {
@@ -171,7 +172,7 @@ sub _prepare_message {
     $feedback .= "   Time: " . scalar(localtime) . "\n";
     $feedback .= " Client: " . $c->request->address;
     $feedback .=        " (" . $c->request->hostname . ")\n";
-    $feedback .= "  Agent: " . $c->request->user_agent . "\n";
+    $feedback .= "  Agent: " . ($c->request->user_agent||q{}) . "\n";
     $feedback .= "    URI: " . $c->request->uri . "\n";
     $feedback .= " Method: " . $c->request->method . "\n";
 
@@ -191,7 +192,7 @@ sub _prepare_message {
             my $code_preview = _print_context(
                 $frame->{file},
                 $frame->{line},
-                $c->config->{"Plugin::ErrorCatcher"}->{context}
+                $c->_errorcatcher_cfg->{context}
             );
 
             $feedback .= "\nPackage: $pkg\n   Line: $line\n   File: $file\n";
@@ -203,7 +204,7 @@ sub _prepare_message {
     }
 
     # in case we bugger up the s/// on the original error message
-    if ($c->error) {
+    if ($full_error) {
         $feedback .= "\nOriginal Error:\n\n$full_error";
     }
 
@@ -323,6 +324,16 @@ in this documentation.
 
 =back
 
+=head1 PROVIDED EMIT CLASSES
+
+=head2 Catalyst::Plugin::ErrorCatcher::Email
+
+This module uses L<MIME::Lite> to send the prepared output to a specified
+email address.
+
+See L<Catalyst::Plugin::ErrorCatcher::Email> for usage and configuration
+details.
+
 =head1 CUSTOM EMIT CLASSES
 
 A custom emit class takes the following format:
@@ -375,13 +386,12 @@ fit.
 
 =head1 KNOWN ISSUES
 
-B<This module has no tests!>
+The test-suite coverage is quite low.
 
 =head1 SEE ALSO
 
 L<Catalyst>,
 L<Catalyst::Plugin::StackTrace>
-
 
 =head1 AUTHORS
 
