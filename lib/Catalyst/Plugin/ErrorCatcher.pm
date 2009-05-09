@@ -8,7 +8,7 @@ use IO::File;
 use MRO::Compat;
 use UNIVERSAL::can;
 
-use version; our $VERSION = qv(0.0.2)->numify;
+use version; our $VERSION = qv(0.0.2.1)->numify;
 
 __PACKAGE__->mk_classaccessor(qw/_errorcatcher/);
 __PACKAGE__->mk_classaccessor(qw/_errorcatcher_msg/);

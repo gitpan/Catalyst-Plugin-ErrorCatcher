@@ -1,5 +1,9 @@
 This file documents the revision history for Catalyst::Plugin::ErrorCatcher
 
+0.0.2.1 Sat May  9 19:31:11 BST 2009
+    - added missing build dependencies
+    - added version number to Email emitter
+
 0.0.2   Fri May  8 21:22:09 BST 2009
     - added Email emitter
     - store config options in an accessor
