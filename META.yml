@@ -4,6 +4,7 @@ author:
   - 'Chisel Wright C<< <chisel@herlpacker.co.uk> >>'
 build_requires:
   Catalyst::Plugin::StackTrace: 0
+  Catalyst::Runtime: 5.71001
   Catalyst::Test: 0
   ExtUtils::MakeMaker: 6.42
   FindBin: 0
@@ -24,7 +25,7 @@ no_index:
 recommends:
   MIME::Lite: 3.023
 requires:
-  Catalyst::Runtime: 0
+  Catalyst::Runtime: 5.71001
   Class::Data::Accessor: 0
   IO::File: 0
   MRO::Compat: 0
@@ -33,4 +34,4 @@ requires:
   version: 0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.0.2.1
+version: 0.0.2.2

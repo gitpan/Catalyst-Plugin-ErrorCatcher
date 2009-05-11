@@ -1,5 +1,9 @@
 This file documents the revision history for Catalyst::Plugin::ErrorCatcher
 
+0.0.2.2 Mon May 11 14:05:11 BST 2009
+    - specified minimum version of Catalyst::Runtime
+      (for ctx_request() test method)
+
 0.0.2.1 Sat May  9 19:31:11 BST 2009
     - added missing build dependencies
     - added version number to Email emitter
