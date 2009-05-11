@@ -8,22 +8,31 @@ use IO::File;
 use MRO::Compat;
 use UNIVERSAL::can;
 
-use version; our $VERSION = qv(0.0.2.2)->numify;
+use version; our $VERSION = qv(0.0.3)->numify;
 
 __PACKAGE__->mk_classaccessor(qw/_errorcatcher/);
 __PACKAGE__->mk_classaccessor(qw/_errorcatcher_msg/);
 __PACKAGE__->mk_classaccessor(qw/_errorcatcher_cfg/);
+__PACKAGE__->mk_classaccessor(qw/_errorcatcher_c_cfg/);
 
 sub setup {
     my $c = shift @_;
+
+    # make sure other modules (e.g. ConfigLoader) work their magic
+    $c->maybe::next::method(@_);
+
+    # store the whole config (so plugins have a method to access it)
+    $c->_errorcatcher_c_cfg( $c->config );
+
+    # get our plugin config
     my $config = $c->config->{'Plugin::ErrorCatcher'} || {};
 
+    # set some defaults
     $config->{context} ||= 4;
     $config->{verbose} ||= 0;
 
+    # store our plugin config
     $c->_errorcatcher_cfg( $config );
-
-    $c->maybe::next::method(@_);
 }
 
 # implementation borrowed from ABERLIN

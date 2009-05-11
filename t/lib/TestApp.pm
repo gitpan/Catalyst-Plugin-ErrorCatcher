@@ -18,7 +18,7 @@ TestApp->config(
     name => 'TestApp',
 );
 
-TestApp->setup( qw/-Debug StackTrace ErrorCatcher/ );
+TestApp->setup( qw/-Debug StackTrace ErrorCatcher ConfigLoader/ );
 
 1;
 

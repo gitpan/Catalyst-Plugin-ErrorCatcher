@@ -20,7 +20,10 @@ META.yml
 README
 SIGNATURE
 t/00.basic.t
+t/03.config.t
 t/04trace.t
+t/05.emit.email.t
+t/lib/testapp.conf
 t/lib/TestApp.pm
 t/lib/TestApp/Controller/Foo.pm
 t/lib/TestApp/Exception.pm

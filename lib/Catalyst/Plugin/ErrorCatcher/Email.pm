@@ -33,7 +33,7 @@ sub emit {
 sub _check_config {
     my $c = shift;
 
-    my $config = $c->config->{"Plugin::ErrorCatcher::Email"};
+    my $config = $c->_errorcatcher_c_cfg->{"Plugin::ErrorCatcher::Email"};
 
     # no config, no email
     # we die so we count as a failure
@@ -48,7 +48,7 @@ sub _check_config {
 
     # set a default From address
     if (not defined $config->{from}) {
-        $config->{from} = $c->config->{to};
+        $config->{from} = $config->{to};
     }
 
     # set a default Subject-Line

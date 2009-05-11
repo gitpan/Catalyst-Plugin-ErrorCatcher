@@ -3,12 +3,13 @@ use inc::Module::Install '0.87';
 
 # Define metadata
 name            'Catalyst-Plugin-ErrorCatcher';
-version         '0.0.2.2';
+version         '0.0.3';
 all_from        'lib/Catalyst/Plugin/ErrorCatcher.pm';
 
 # Specific dependencies
 build_requires(
     'Test::More'                        => '0.72',
+    'Catalyst::Plugin::ConfigLoader'    => 0,
     'Catalyst::Plugin::StackTrace'      => 0,
     'Catalyst::Test'                    => 0,
     'FindBin'                           => 0,
