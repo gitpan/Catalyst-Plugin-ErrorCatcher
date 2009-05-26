@@ -3,7 +3,7 @@ package Catalyst::Plugin::ErrorCatcher::Email;
 use strict;
 use warnings;
 
-use version; our $VERSION = qv(0.0.1)->numify;
+use version; our $VERSION = qv(0.0.2)->numify;
 
 use MIME::Lite;
 
@@ -57,6 +57,12 @@ sub _check_config {
               q{Error Report for }
             . $c->config->{name}
         ;
+        if (defined $c->request->hostname) {
+            $config->{subject} .=
+                  q{ on }
+                . $c->request->hostname
+            ;
+        }
     }
 
     return $config;

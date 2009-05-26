@@ -6,9 +6,8 @@ use 5.008001;
 use base qw/Class::Data::Accessor/;
 use IO::File;
 use MRO::Compat;
-use UNIVERSAL::can;
 
-use version; our $VERSION = qv(0.0.3)->numify;
+use version; our $VERSION = qv(0.0.5)->numify;
 
 __PACKAGE__->mk_classaccessor(qw/_errorcatcher/);
 __PACKAGE__->mk_classaccessor(qw/_errorcatcher_msg/);
@@ -28,8 +27,9 @@ sub setup {
     my $config = $c->config->{'Plugin::ErrorCatcher'} || {};
 
     # set some defaults
-    $config->{context} ||= 4;
-    $config->{verbose} ||= 0;
+    $config->{context}      ||= 4;
+    $config->{verbose}      ||= 0;
+    $config->{always_log}   ||= 0;
 
     # store our plugin config
     $c->_errorcatcher_cfg( $config );
@@ -98,7 +98,11 @@ sub _emit_message {
     }
 
     # by default use $c->log
-    if (not $emitted_count) {
+    if (
+        not $emitted_count
+            or
+        $c->_errorcatcher_cfg->{always_log}
+    ) {
         $c->log->info(
             $c->_errorcatcher_msg
         );
@@ -153,6 +157,20 @@ sub _cleaned_error_message {
         \s+
         .*
         "
+        $
+    }{$1}xmsg;
+
+    # DBIx::Class::Schema::txn_do(): ... ... line XX
+    $error_message =~ s{
+        DBIx::Class::Schema::txn_do\(\):
+        \s+
+        (.+?)
+        \s+at\s+
+        \S+
+        \s+
+        line
+        \s+
+        .*
         $
     }{$1}xmsg;
 
@@ -296,6 +314,7 @@ The plugin is configured in a similar manner to other Catalyst plugins:
   <Plugin::ErrorCatcher>
     enabled     1
     context     5
+    always_log  0
 
     emit_module A::Module
   </Plugin::ErrorCatcher>
@@ -330,6 +349,14 @@ is to log the prepared message at the INFO level via C<$c-E<gt>log()>.
 
 For details on how to implement a custom emitter see L</"CUSTOM EMIT CLASSES">
 in this documentation.
+
+=item B<always_log>
+
+The default plugin behaviour when using one or more emitter modules is to
+suppress the I<info> log message if one or more of them succeeded.
+
+If you wish to log the information, via C<$c-E<gt>log()> then set this value
+to 1.
 
 =back
 

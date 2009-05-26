@@ -1,5 +1,15 @@
 This file documents the revision history for Catalyst::Plugin::ErrorCatcher
 
+0.0.5   Tue May 26 18:55:03 BST 2009
+    - "cleanup" DBIx::Class::Schema::txn_do() format messages
+    - add hostname to default email subject line
+
+0.0.4   Thu May 21 08:58:22 BST 2009
+    - remove UNIVERSAL::can module usage
+      (still calling can() 'correctly')
+    - added "always_log" config option
+    - added missing build dependency
+
 0.0.3   Mon May 11 21:18:55 BST 2009
     - fix plugin setup() to work properly
     - added tests

@@ -74,7 +74,7 @@ use Catalyst::Test 'TestApp';
         {
             to => 'address@example.com',
             from => 'address@example.com',
-            subject => 'Error Report for TestApp',
+            subject => 'Error Report for TestApp on localhost',
         },
         'munged email emitter config ok',
     );

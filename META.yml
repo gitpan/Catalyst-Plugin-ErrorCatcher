@@ -7,6 +7,7 @@ build_requires:
   Catalyst::Plugin::StackTrace: 0
   Catalyst::Runtime: 5.71001
   Catalyst::Test: 0
+  Config::General: 0
   ExtUtils::MakeMaker: 6.42
   FindBin: 0
   Test::More: 0.72
@@ -30,9 +31,8 @@ requires:
   Class::Data::Accessor: 0
   IO::File: 0
   MRO::Compat: 0
-  UNIVERSAL::can: 0
   perl: 5.8.1
   version: 0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.0.3
+version: 0.0.5

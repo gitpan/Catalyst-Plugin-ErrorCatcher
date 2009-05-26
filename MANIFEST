@@ -1,3 +1,4 @@
+Catalyst-Plugin-ErrorCatcher-0.0.4.tar.gz
 Changes
 inc/Module/AutoInstall.pm
 inc/Module/Install.pm
@@ -20,8 +21,9 @@ META.yml
 README
 SIGNATURE
 t/00.basic.t
+t/01.no.tabs.t
 t/03.config.t
-t/04trace.t
+t/04.trace.t
 t/05.emit.email.t
 t/lib/testapp.conf
 t/lib/TestApp.pm
