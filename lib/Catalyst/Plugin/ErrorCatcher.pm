@@ -7,7 +7,7 @@ use base qw/Class::Data::Accessor/;
 use IO::File;
 use MRO::Compat;
 
-use version; our $VERSION = qv(0.0.5)->numify;
+use version; our $VERSION = qv(0.0.6)->numify;
 
 __PACKAGE__->mk_classaccessor(qw/_errorcatcher/);
 __PACKAGE__->mk_classaccessor(qw/_errorcatcher_msg/);
@@ -47,6 +47,15 @@ sub finalize_error {
     # and prepare the Devel::StackTrace frames for us to re-use
     $c->maybe::next::method(@_);
 
+    # don't run if user is certain we shouldn't
+    if (
+        # the config file insists we DO NOT run
+        defined $conf->{enable} && not $conf->{enable}
+    ) {
+        return;
+    }
+
+    # run if required
     if (
         # the config file insists we run
         defined $conf->{enable} && $conf->{enable}
@@ -70,6 +79,7 @@ sub my_finalize_error {
 
 sub _emit_message {
     my $c = shift;
+    my $conf = $c->_errorcatcher_cfg;
     my $emitted_count = 0;
 
     return
@@ -87,12 +97,27 @@ sub _emit_message {
         }
 
         foreach my $emitter (@emit_list) {
+            $c->log->debug(
+                  q{Trying to use custom emitter: }
+                . $emitter
+            ) if $conf->{verbose};
+
             # require, and call methods
             my $emitted_ok = $c->_require_and_emit(
                 $emitter, $c->_errorcatcher_msg
             );
             if ($emitted_ok) {
                 $emitted_count++;
+                $c->log->debug(
+                      $emitter
+                    . q{: OK}
+                ) if $conf->{verbose};
+            }
+            else {
+                $c->log->debug(
+                      $emitter
+                    . q{: FAILED}
+                ) if $conf->{verbose};
             }
         }
     }
@@ -115,6 +140,7 @@ sub _require_and_emit {
     my $c = shift;
     my $emitter_name = shift;
     my $output = shift;
+    my $conf = $c->_errorcatcher_cfg;
 
     # make sure our emitter loads
     eval "require $emitter_name";
@@ -133,8 +159,20 @@ sub _require_and_emit {
             $c->log->error($@);
             return;
         }
+
+        $c->log->debug(
+                $emitter_name
+            . q{: emitted without errors}
+        ) if $conf->{verbose} > 1;
+
         # we are happy when they emitted without incident
         return 1;
+    }
+    else {
+        $c->log->debug(
+                $emitter_name
+            . q{ does not have an emit() method}
+        ) if $conf->{verbose};
     }
 
     # default is, "no we didn't emit anything"
@@ -247,6 +285,7 @@ sub _prepare_message {
 # the work for us
 sub _keep_frames {
     my $c = shift;
+    my $conf = $c->_errorcatcher_cfg;
     my $stacktrace;
 
     eval {
@@ -255,6 +294,12 @@ sub _keep_frames {
 
     if (defined $stacktrace) {
         $c->_errorcatcher( $stacktrace );
+    }
+    else {
+        $c->log->debug(
+                __PACKAGE__
+            . q{ has no stack-trace information}
+        ) if $conf->{verbose} > 1;
     }
     return;
 }
@@ -359,6 +404,32 @@ If you wish to log the information, via C<$c-E<gt>log()> then set this value
 to 1.
 
 =back
+
+=head1 STACKTRACE IN REPORTS WHEN NOT RUNNING IN DEBUG MODE
+
+It is possible to run your application in non-Debug mode, and still have
+errors reported with a stack-trace.
+
+Include the StackTrace and ErrorCatcher plugins in MyApp.pm:
+
+  use Catalyst qw<
+    ErrorCatcher
+    StackTrace
+  >;
+
+Set up your C<myapp.conf> to include the following:
+
+  <stacktrace>
+    enable      1
+  </stacktrace>
+
+  <Plugin::ErrorCatcher>
+    enable      1
+    # include other options here
+  <Plugin::ErrorCatcher>
+
+Any exceptions should now show your user the I<"Please come back later">
+screen whilst still capturing and emitting a report with stack-trace.
 
 =head1 PROVIDED EMIT CLASSES
 

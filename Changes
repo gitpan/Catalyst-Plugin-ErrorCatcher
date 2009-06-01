@@ -1,5 +1,10 @@
 This file documents the revision history for Catalyst::Plugin::ErrorCatcher
 
+0.0.6
+    - make sure we do nothing if "enabled" is explicitly set to 0
+    - add some extra output if we have a non-zero "verbose" value
+    - added ::File emitter
+
 0.0.5   Tue May 26 18:55:03 BST 2009
     - "cleanup" DBIx::Class::Schema::txn_do() format messages
     - add hostname to default email subject line
