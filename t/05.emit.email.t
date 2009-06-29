@@ -9,6 +9,7 @@ BEGIN {
 }
 
 use Test::More;
+use Sys::Hostname;
 
 BEGIN {
     $ENV{ TESTAPP_CONFIG } = "$FindBin::Bin/lib/testapp.conf";
@@ -69,12 +70,14 @@ use Catalyst::Test 'TestApp';
     is( ref($config), q{HASH}, q{returned config is a hashref} );
 
     # check the prepared config
+    my $host = Sys::Hostname::hostname();
+
     is_deeply(
         $config,
         {
             to => 'address@example.com',
             from => 'address@example.com',
-            subject => 'Error Report for TestApp on localhost',
+            subject => qq{Error Report for TestApp on $host},
         },
         'munged email emitter config ok',
     );

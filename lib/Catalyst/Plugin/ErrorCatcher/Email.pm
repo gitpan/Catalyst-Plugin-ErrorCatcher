@@ -6,6 +6,7 @@ use warnings;
 use version; our $VERSION = qv(0.0.2)->numify;
 
 use MIME::Lite;
+use Sys::Hostname;
 
 sub emit {
     my ($class, $c, $output) = @_;
@@ -57,10 +58,11 @@ sub _check_config {
               q{Error Report for }
             . $c->config->{name}
         ;
-        if (defined $c->request->hostname) {
+        my $host = Sys::Hostname::hostname();
+        if (defined $host) {
             $config->{subject} .=
                   q{ on }
-                . $c->request->hostname
+                . $host
             ;
         }
     }
