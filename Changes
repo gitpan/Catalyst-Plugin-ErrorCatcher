@@ -1,5 +1,8 @@
 This file documents the revision history for Catalyst::Plugin::ErrorCatcher
 
+0.0.6.2 Wed Jul 22 19:17:15 BST 2009
+    - add Cc: option to email emitter
+
 0.0.6.1 Mon Jun 29 14:15:08 BST 2009
     - fix hostname in email emitter subject line
 

@@ -3,7 +3,7 @@ package Catalyst::Plugin::ErrorCatcher::Email;
 use strict;
 use warnings;
 
-use version; our $VERSION = qv(0.0.2)->numify;
+use version; our $VERSION = qv(0.0.2.2)->numify;
 
 use MIME::Lite;
 use Sys::Hostname;
@@ -16,7 +16,7 @@ sub emit {
     $config = _check_config($c, $config);
 
     # build the message
-    $msg = MIME::Lite->new(
+    my %msg_config = (
         From    => $config->{from},
         To      => $config->{to},
         Subject => $config->{subject},
@@ -24,6 +24,11 @@ sub emit {
         Type    => 'TEXT',
         Data    => $output,
     );
+    # add the optional Cc value
+    if (exists $config->{cc}) {
+        $msg_config{Cc} = $config->{cc};
+    }
+    $msg = MIME::Lite->new( %msg_config );
 
     # send the message
     _send_email($msg, $config);

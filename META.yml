@@ -16,11 +16,12 @@ build_requires:
   FindBin: 0
   MIME::Lite: 3.023
   Path::Class: 0.16
+  Sys::Hostname: 0
   Test::More: 0.72
 configure_requires:
   ExtUtils::MakeMaker: 6.42
 distribution_type: module
-generated_by: 'Module::Install version 0.87'
+generated_by: 'Module::Install version 0.91'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -44,4 +45,4 @@ requires:
   version: 0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.0.6
+version: 0.0.6.2
