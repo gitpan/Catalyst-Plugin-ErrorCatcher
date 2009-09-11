@@ -1,5 +1,11 @@
 This file documents the revision history for Catalyst::Plugin::ErrorCatcher
 
+0.0.6.3 Fri Sep 11 11:21:03 BST 2009
+    - POD fix (enabled --> enable)
+    - RT#49550: POD fix (copy-and-paste whoopsie)
+    - RT#49552: ->user added to report (if exists)
+    - RT#49590: ->request only added if exists (for ::Stomp)
+
 0.0.6.2 Wed Jul 22 19:17:15 BST 2009
     - add Cc: option to email emitter
 

@@ -7,7 +7,7 @@ use base qw/Class::Data::Accessor/;
 use IO::File;
 use MRO::Compat;
 
-use version; our $VERSION = qv(0.0.6.2)->numify;
+use version; our $VERSION = qv(0.0.6.3)->numify;
 
 __PACKAGE__->mk_classaccessor(qw/_errorcatcher/);
 __PACKAGE__->mk_classaccessor(qw/_errorcatcher_msg/);
@@ -231,16 +231,40 @@ sub _prepare_message {
     $feedback .= qq{Exception caught:\n};
 
     # the (parsed) error
-    $feedback .= "\n  Error: " . $parsed_error . "\n";
+    $feedback .= "\n   Error: " . $parsed_error . "\n";
 
     # general request information
-    $feedback .= "   Time: " . scalar(localtime) . "\n";
-    $feedback .= " Client: " . $c->request->address;
-    $feedback .=        " (" . $c->request->hostname . ")\n";
-    $feedback .= "  Agent: " . ($c->request->user_agent||q{}) . "\n";
-    $feedback .= "    URI: " . $c->request->uri . "\n";
-    $feedback .= " Method: " . $c->request->method . "\n";
+    # some of these aren't always defined...
+    $feedback .= "    Time: " . scalar(localtime) . "\n";
 
+    $feedback .= "  Client: " . $c->request->address
+        if (defined $c->request->address);
+    if (defined $c->request->hostname) {
+        $feedback .=        " (" . $c->request->hostname . ")\n"
+    }
+    else {
+        $feedback .= "\n";
+    }
+
+    if (defined $c->request->user_agent) {
+        $feedback .= "   Agent: " . $c->request->user_agent . "\n";
+    }
+    $feedback .= "     URI: " . ($c->request->uri||q{n/a}) . "\n";
+    $feedback .= "  Method: " . ($c->request->method||q{n/a}) . "\n";
+
+    # if we have a logged-in user, add to the feedback
+    if (
+           $c->user_exists
+        && $c->user->can('id')
+    ) {
+        $feedback .= "    User: " . $c->user->id;
+        if (ref $c->user) {
+            $feedback .= " (" . ref($c->user) . ")\n";
+        }
+        else {
+            $feedback .= "\n";
+        }
+    }
 
     if ('ARRAY' eq ref($c->_errorcatcher)) {
         # push on information and context
@@ -357,7 +381,7 @@ L<Catalyst::Plugin::StackTrace> plugin.
 The plugin is configured in a similar manner to other Catalyst plugins:
 
   <Plugin::ErrorCatcher>
-    enabled     1
+    enable      1
     context     5
     always_log  0
 
@@ -366,7 +390,7 @@ The plugin is configured in a similar manner to other Catalyst plugins:
 
 =over 4
 
-=item B<enabled>
+=item B<enable>
 
 Setting this to I<true> forces the module to work its voodoo.
 
