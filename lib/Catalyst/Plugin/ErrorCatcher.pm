@@ -7,12 +7,13 @@ use base qw/Class::Data::Accessor/;
 use IO::File;
 use MRO::Compat;
 
-use version; our $VERSION = qv(0.0.6.3)->numify;
+use version; our $VERSION = qv(0.0.6.4)->numify;
 
 __PACKAGE__->mk_classaccessor(qw/_errorcatcher/);
 __PACKAGE__->mk_classaccessor(qw/_errorcatcher_msg/);
 __PACKAGE__->mk_classaccessor(qw/_errorcatcher_cfg/);
 __PACKAGE__->mk_classaccessor(qw/_errorcatcher_c_cfg/);
+__PACKAGE__->mk_classaccessor(qw/_errorcatcher_first_frame/);
 
 sub setup {
     my $c = shift @_;
@@ -273,6 +274,12 @@ sub _prepare_message {
             # .../MyApp/script/../lib/...
             if ( $frame->{file} =~ /../ ) {
                 $frame->{file} =~ s{script/../}{};
+            }
+
+            # if we haven't stored a frame, do so now
+            # this is useful for easy access to the filename, line, etc
+            if (not defined $c->_errorcatcher_first_frame) {
+                $c->_errorcatcher_first_frame($frame);
             }
 
             my $pkg  = $frame->{pkg};

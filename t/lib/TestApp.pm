@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use Catalyst;
 
-our $VERSION = '0.02';
+our $VERSION = '0.0.2';
 
 # hide debug output at startup
 {
@@ -35,6 +35,14 @@ TestApp->config(
         }
     }
 );
+
+VERSION_MADNESS: {
+    use version;
+    my $vstring = version->new($VERSION)->normal;
+    __PACKAGE__->config(
+        version => $vstring
+    );
+}
 
 TestApp->setup(
     qw<
