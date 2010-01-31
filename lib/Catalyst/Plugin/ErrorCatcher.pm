@@ -7,7 +7,7 @@ use base qw/Class::Data::Accessor/;
 use IO::File;
 use MRO::Compat;
 
-use version; our $VERSION = qv(0.0.6.4)->numify;
+use version; our $VERSION = qv(0.0.6.5)->numify;
 
 __PACKAGE__->mk_classaccessor(qw/_errorcatcher/);
 __PACKAGE__->mk_classaccessor(qw/_errorcatcher_msg/);
@@ -255,7 +255,8 @@ sub _prepare_message {
 
     # if we have a logged-in user, add to the feedback
     if (
-           $c->user_exists
+           $c->can('user_exists')
+        && $c->user_exists
         && $c->user->can('id')
     ) {
         $feedback .= "    User: " . $c->user->id;
