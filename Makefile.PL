@@ -1,45 +1,77 @@
-# Load the Module::Install bundled in ./inc/
-use inc::Module::Install '0.87';
 
-# Define metadata
-name            'Catalyst-Plugin-ErrorCatcher';
-version         '0.0.7';
-all_from        'lib/Catalyst/Plugin/ErrorCatcher.pm';
+use strict;
+use warnings;
 
-# Specific dependencies
-build_requires(
-    'Test::More'                        => '0.92',  # core since 5.006002
-    'Test::Simple'                      => '0.88',
-    'Catalyst::Plugin::Authentication'  => 0,
-    'Catalyst::Plugin::ConfigLoader'    => 0,
-    'Catalyst::Plugin::StackTrace'      => 0,
-    'Catalyst::Runtime'                 => '5.71001',
-    'Catalyst::Test'                    => 0,
-    'Config::General'                   => 0,
-    'DateTime'                          => '0.42',
-    'File::Find::Rule'                  => '0.30',
-    'File::Path'                        => 0,
-    'File::Slurp'                       => '9999.12',
-    'FindBin'                           => 0,   # core since 5.00307
-    'MIME::Lite'                        => '3.023',
-    'Path::Class'                       => '0.16',
-    'Sys::Hostname'                     => 0,   # core since perl 5
+
+
+use ExtUtils::MakeMaker 6.31;
+
+
+
+my %WriteMakefileArgs = (
+  'ABSTRACT' => 'Catch application errors and emit them somewhere',
+  'AUTHOR' => 'Chisel Wright <chisel@chizography.net>',
+  'BUILD_REQUIRES' => {},
+  'CONFIGURE_REQUIRES' => {
+    'ExtUtils::MakeMaker' => '6.31'
+  },
+  'DISTNAME' => 'Catalyst-Plugin-ErrorCatcher',
+  'EXE_FILES' => [],
+  'LICENSE' => 'perl',
+  'NAME' => 'Catalyst::Plugin::ErrorCatcher',
+  'PREREQ_PM' => {
+    'Catalyst' => '5.80',
+    'Catalyst::Controller::MessageDriven' => '0',
+    'Catalyst::Engine::Stomp' => '0.07',
+    'Catalyst::Plugin::ErrorCatcher' => '0.0.7',
+    'Catalyst::Plugin::StackTrace' => '0.10',
+    'Catalyst::Runtime' => '5.80',
+    'Data::Rx' => '0.007',
+    'Data::Serializer' => '0.49',
+    'Data::Serializer::JSON' => '0.03',
+    'Data::Visitor' => '0.26',
+    'DateTime' => '0.4304',
+    'DateTime::Format::ISO8601' => '0.07',
+    'File::Pid' => '1.01',
+    'FindBin::libs' => '1.42',
+    'JSON::Any' => '1.22',
+    'Log::Log4perl' => '1.17',
+    'Module::Pluggable' => '3.9',
+    'Moose' => '0.93',
+    'MooseX::Types' => '0.20',
+    'Net::Stomp' => '0.38',
+    'Path::Class' => '0.17',
+    'Scalar::Util' => '1.19',
+    'Test::Exception' => '0.27',
+    'Test::More' => '0.92',
+    'Test::UseAllModules' => '0.12',
+    'Time::HiRes' => '1.86',
+    'version' => '0.76'
+  },
+  'VERSION' => '0.0.8',
+  'test' => {
+    'TESTS' => 't/*.t t/bug/*.t'
+  }
 );
 
-requires(
-    'Catalyst::Runtime'                 => '5.71001',
-    'Class::Data::Accessor'             => 0,
-    'IO::File'                          => 0,   # core since 5.00307
-    'MRO::Compat'                       => 0,
-    'version'                           => 0,   # core since 5.009
-);
 
-recommends(
-    'DateTime'                          => '0.42',
-    'File::Slurp'                       => '9999.12',
-    'MIME::Lite'                        => '3.023',
-    'Path::Class'                       => '0.16',
-);
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
+  my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};
+  my $pp = $WriteMakefileArgs{PREREQ_PM};
+  for my $mod ( keys %$br ) {
+    if ( exists $pp->{$mod} ) {
+      $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod};
+    }
+    else {
+      $pp->{$mod} = $br->{$mod};
+    }
+  }
+}
 
-auto_install;
-WriteAll;
+delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
+  unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
+
+WriteMakefile(%WriteMakefileArgs);
+
+
+

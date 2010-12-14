@@ -1,13 +1,17 @@
 package Catalyst::Plugin::ErrorCatcher;
-# vim: ts=8 sts=4 et sw=4 sr sta
+BEGIN {
+  $Catalyst::Plugin::ErrorCatcher::VERSION = '0.0.8';
+}
+BEGIN {
+  $Catalyst::Plugin::ErrorCatcher::DIST = 'Catalyst-Plugin-ErrorCatcher';
+}
+# ABSTRACT: Catch application errors and emit them somewhere
 use strict;
 use warnings;
 use 5.008001;
 use base qw/Class::Data::Accessor/;
 use IO::File;
 use MRO::Compat;
-
-use version; our $VERSION = qv(0.0.7)->numify;
 
 __PACKAGE__->mk_classaccessor(qw/_errorcatcher/);
 __PACKAGE__->mk_classaccessor(qw/_errorcatcher_msg/);
@@ -453,13 +457,17 @@ sub _print_context {
 }
 
 1;
-__END__
+
 
 =pod
 
 =head1 NAME
 
 Catalyst::Plugin::ErrorCatcher - Catch application errors and emit them somewhere
+
+=head1 VERSION
+
+version 0.0.8
 
 =head1 SYNOPSIS
 
@@ -619,10 +627,6 @@ The test-suite coverage is quite low.
 L<Catalyst>,
 L<Catalyst::Plugin::StackTrace>
 
-=head1 AUTHORS
-
-Chisel Wright C<< <chisel@herlpacker.co.uk> >>
-
 =head1 THANKS
 
 The authors of L<Catalyst::Plugin::StackTrace>, from which a lot of
@@ -631,9 +635,21 @@ code was used.
 Ash Berlin for guiding me in the right direction after a known hacky first
 implementation.
 
-=head1 COPYRIGHT
+=head1 AUTHOR
 
-This program is free software, you can redistribute it and/or modify it
-under the same terms as Perl itself.
+Chisel Wright <chisel@chizography.net>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Chisel Wright.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
+
+
+__END__
+
+
+# vim: ts=8 sts=4 et sw=4 sr sta

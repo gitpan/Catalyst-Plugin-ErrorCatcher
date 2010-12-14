@@ -1,9 +1,13 @@
 package Catalyst::Plugin::ErrorCatcher::Email;
-# vim: ts=8 sts=4 et sw=4 sr sta
+BEGIN {
+  $Catalyst::Plugin::ErrorCatcher::Email::VERSION = '0.0.8';
+}
+BEGIN {
+  $Catalyst::Plugin::ErrorCatcher::Email::DIST = 'Catalyst-Plugin-ErrorCatcher';
+}
+# ABSTRACT: an email emitter for Catalyst::Plugin::ErrorCatcher
 use strict;
 use warnings;
-
-use version; our $VERSION = qv(0.0.2.3)->numify;
 
 use MIME::Lite;
 use Sys::Hostname;
@@ -140,13 +144,17 @@ sub _send_email {
 }
 
 1;
-__END__
+
 
 =pod
 
 =head1 NAME
 
 Catalyst::Plugin::ErrorCatcher::Email - an email emitter for Catalyst::Plugin::ErrorCatcher
+
+=head1 VERSION
+
+version 0.0.8
 
 =head1 SYNOPSIS
 
@@ -201,13 +209,21 @@ Allowing you to set your subject like this:
    subject    Report from: %h; %F, line %l
   </Plugin::ErrorCatcher::Email>
 
-=head1 AUTHORS
+=head1 AUTHOR
 
-Chisel Wright C<< <chisel@herlpacker.co.uk> >>
+Chisel Wright <chisel@chizography.net>
 
-=head1 COPYRIGHT
+=head1 COPYRIGHT AND LICENSE
 
-This program is free software, you can redistribute it and/or modify it
-under the same terms as Perl itself.
+This software is copyright (c) 2010 by Chisel Wright.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
+
+
+__END__
+
+
+# vim: ts=8 sts=4 et sw=4 sr sta

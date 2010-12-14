@@ -1,9 +1,13 @@
 package Catalyst::Plugin::ErrorCatcher::File;
-# vim: ts=8 sts=4 et sw=4 sr sta
+BEGIN {
+  $Catalyst::Plugin::ErrorCatcher::File::VERSION = '0.0.8';
+}
+BEGIN {
+  $Catalyst::Plugin::ErrorCatcher::File::DIST = 'Catalyst-Plugin-ErrorCatcher';
+}
+# ABSTRACT: a file emitter for Catalyst::Plugin::ErrorCatcher
 use strict;
 use warnings;
-
-use version; our $VERSION = qv(0.0.1.1)->numify;
 
 use DateTime;
 use Path::Class;
@@ -73,13 +77,17 @@ sub _write_file {
 }
 
 1;
-__END__
+
 
 =pod
 
 =head1 NAME
 
 Catalyst::Plugin::ErrorCatcher::File - a file emitter for Catalyst::Plugin::ErrorCatcher
+
+=head1 VERSION
+
+version 0.0.8
 
 =head1 SYNOPSIS
 
@@ -103,13 +111,21 @@ In your application configuration:
 
   </Plugin::ErrorCatcher::File>
 
-=head1 AUTHORS
+=head1 AUTHOR
 
-Chisel Wright C<< <chisel@herlpacker.co.uk> >>
+Chisel Wright <chisel@chizography.net>
 
-=head1 COPYRIGHT
+=head1 COPYRIGHT AND LICENSE
 
-This program is free software, you can redistribute it and/or modify it
-under the same terms as Perl itself.
+This software is copyright (c) 2010 by Chisel Wright.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
+
+
+__END__
+
+
+# vim: ts=8 sts=4 et sw=4 sr sta
