@@ -14,17 +14,17 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 b8713d8fdcd5dbbd1e998609edf835a74616780d Changes
+SHA1 c558d752139f4ffc764af36a1a82ea70cc92e5a1 Changes
 SHA1 0b70e29b8a1093fc44bb6dba4288a1edbc43f883 LICENSE
 SHA1 a90b6ca8f4b778c7ba3c12e9428497258534d56a MANIFEST
 SHA1 24a5a60c1c311b8915392fc17bc4e4ca4bbe10e4 MANIFEST.SKIP
-SHA1 216c8081ab3b8802f33edd20533dd1e7f41c2d86 META.yml
-SHA1 c73241b308869cb417a967669781c0d71a6345c1 Makefile.PL
-SHA1 628db096152ca7bb0b48837f097ef52ce7f6ea90 README
+SHA1 3e992e224f589faabdd3533544679f0545d0f3c2 META.yml
+SHA1 446d0fdb037ac74cee7a4ad37f5369dd76422fcc Makefile.PL
+SHA1 b8c0e8fcee6290cccb523f178f3753b9f5c9a14a README
 SHA1 91e978217f924a308a076c49f8ab4d56dbc6febc docs/SubmittingPatches.pod
-SHA1 7490a3d0d279e5db5b7753c0290d91db8a2a2d48 lib/Catalyst/Plugin/ErrorCatcher.pm
-SHA1 872441af9b8676a79344cafaff6b36215e62a1b9 lib/Catalyst/Plugin/ErrorCatcher/Email.pm
-SHA1 4784817a143fca3409da808e3e8afb9fda78e7c9 lib/Catalyst/Plugin/ErrorCatcher/File.pm
+SHA1 73a802355cf29a8842c0f7d2d6d0c5f7f75c47d7 lib/Catalyst/Plugin/ErrorCatcher.pm
+SHA1 5ac669508655485fcc91a12c9fa9708c1a748712 lib/Catalyst/Plugin/ErrorCatcher/Email.pm
+SHA1 2929451e754d32ff44bf00bcae2ed76bb4970bff lib/Catalyst/Plugin/ErrorCatcher/File.pm
 SHA1 26425978dac25cdee265b48081e2a89e25cd4a35 t/00.basic.t
 SHA1 c3ae4b51a81956912e36bca143478c36c85d84e0 t/01.no.tabs.t
 SHA1 3e3cb58b134be9f2353586141c558a2db77f30f8 t/03.config.t
@@ -55,7 +55,7 @@ SHA1 b30cbdfaf935017c4568c0c91b242438cb87786e t/release-pod-syntax.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.10 (GNU/Linux)
 
-iEYEARECAAYFAk0H+aUACgkQh4j7xTiFuxGoQQCfVzUohU1uKr0QF1E5A+FCFpO2
-VYcAn2IsCmrNxRENIuIV4ib7fd3D6hEL
-=K0zV
+iEYEARECAAYFAk0JY4sACgkQh4j7xTiFuxH0kQCeN+x1o+l3ElfbtFccMdvDQM2I
+feoAoJBilwbdaHI5qjC+xRsez+z4jQwV
+=HXyx
 -----END PGP SIGNATURE-----

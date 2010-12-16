@@ -23,7 +23,6 @@ my %WriteMakefileArgs = (
     'Catalyst' => '5.80',
     'Catalyst::Controller::MessageDriven' => '0',
     'Catalyst::Engine::Stomp' => '0.07',
-    'Catalyst::Plugin::ErrorCatcher' => '0.0.7',
     'Catalyst::Plugin::StackTrace' => '0.10',
     'Catalyst::Runtime' => '5.80',
     'Data::Rx' => '0.007',
@@ -48,7 +47,7 @@ my %WriteMakefileArgs = (
     'Time::HiRes' => '1.86',
     'version' => '0.76'
   },
-  'VERSION' => '0.0.8',
+  'VERSION' => '0.0.8.1',
   'test' => {
     'TESTS' => 't/*.t t/bug/*.t'
   }
