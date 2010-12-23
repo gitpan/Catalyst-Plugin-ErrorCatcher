@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 
-
+BEGIN { require 5.008001; }
 
 use ExtUtils::MakeMaker 6.31;
 
@@ -11,7 +11,18 @@ use ExtUtils::MakeMaker 6.31;
 my %WriteMakefileArgs = (
   'ABSTRACT' => 'Catch application errors and emit them somewhere',
   'AUTHOR' => 'Chisel Wright <chisel@chizography.net>',
-  'BUILD_REQUIRES' => {},
+  'BUILD_REQUIRES' => {
+    'Catalyst' => '0',
+    'Catalyst::Controller' => '0',
+    'Catalyst::Test' => '0',
+    'File::Find::Rule' => '0',
+    'File::Path' => '0',
+    'FindBin' => '0',
+    'Moose' => '0',
+    'Test::More' => '0.92',
+    'overload' => '0',
+    'version' => '0'
+  },
   'CONFIGURE_REQUIRES' => {
     'ExtUtils::MakeMaker' => '6.31'
   },
@@ -20,34 +31,16 @@ my %WriteMakefileArgs = (
   'LICENSE' => 'perl',
   'NAME' => 'Catalyst::Plugin::ErrorCatcher',
   'PREREQ_PM' => {
-    'Catalyst' => '5.80',
-    'Catalyst::Controller::MessageDriven' => '0',
-    'Catalyst::Engine::Stomp' => '0.07',
-    'Catalyst::Plugin::StackTrace' => '0.10',
-    'Catalyst::Runtime' => '5.80',
-    'Data::Rx' => '0.007',
-    'Data::Serializer' => '0.49',
-    'Data::Serializer::JSON' => '0.03',
-    'Data::Visitor' => '0.26',
-    'DateTime' => '0.4304',
-    'DateTime::Format::ISO8601' => '0.07',
-    'File::Pid' => '1.01',
-    'FindBin::libs' => '1.42',
-    'JSON::Any' => '1.22',
-    'Log::Log4perl' => '1.17',
-    'Module::Pluggable' => '3.9',
-    'Moose' => '0.93',
-    'MooseX::Types' => '0.20',
-    'Net::Stomp' => '0.38',
-    'Path::Class' => '0.17',
-    'Scalar::Util' => '1.19',
-    'Test::Exception' => '0.27',
-    'Test::More' => '0.92',
-    'Test::UseAllModules' => '0.12',
-    'Time::HiRes' => '1.86',
-    'version' => '0.76'
+    'Class::Data::Accessor' => '0',
+    'DateTime' => '0',
+    'File::Slurp' => '0',
+    'IO::File' => '0',
+    'MIME::Lite' => '0',
+    'MRO::Compat' => '0',
+    'Path::Class' => '0',
+    'Sys::Hostname' => '0'
   },
-  'VERSION' => '0.0.8.1',
+  'VERSION' => '0.0.8.2',
   'test' => {
     'TESTS' => 't/*.t t/bug/*.t'
   }
