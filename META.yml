@@ -5,11 +5,21 @@ author:
 build_requires:
   Catalyst: 0
   Catalyst::Controller: 0
+  Catalyst::Plugin::Authentication: 0
+  Catalyst::Plugin::ConfigLoader: 0
+  Catalyst::Plugin::StackTrace: 0
   Catalyst::Test: 0
+  DateTime: 0
   File::Find::Rule: 0
   File::Path: 0
+  File::Slurp: 0
   FindBin: 0
+  IO::File: 0
+  MIME::Lite: 0
+  MRO::Compat: 0
   Moose: 0
+  Path::Class: 0
+  Sys::Hostname: 0
   Test::More: 0.92
   overload: 0
   version: 0
@@ -32,4 +42,4 @@ requires:
   Path::Class: 0
   Sys::Hostname: 0
   perl: 5.008001
-version: 0.0.8.2
+version: 0.0.8.3
