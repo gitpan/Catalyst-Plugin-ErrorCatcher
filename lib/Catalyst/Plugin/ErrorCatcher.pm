@@ -1,6 +1,6 @@
 package Catalyst::Plugin::ErrorCatcher;
 BEGIN {
-  $Catalyst::Plugin::ErrorCatcher::VERSION = '0.0.8.3';
+  $Catalyst::Plugin::ErrorCatcher::VERSION = '0.0.8.4';
 }
 BEGIN {
   $Catalyst::Plugin::ErrorCatcher::DIST = 'Catalyst-Plugin-ErrorCatcher';
@@ -467,7 +467,7 @@ Catalyst::Plugin::ErrorCatcher - Catch application errors and emit them somewher
 
 =head1 VERSION
 
-version 0.0.8.3
+version 0.0.8.4
 
 =head1 SYNOPSIS
 

@@ -1,6 +1,6 @@
 package Catalyst::Plugin::ErrorCatcher::Email;
 BEGIN {
-  $Catalyst::Plugin::ErrorCatcher::Email::VERSION = '0.0.8.3';
+  $Catalyst::Plugin::ErrorCatcher::Email::VERSION = '0.0.8.4';
 }
 BEGIN {
   $Catalyst::Plugin::ErrorCatcher::Email::DIST = 'Catalyst-Plugin-ErrorCatcher';
@@ -154,7 +154,7 @@ Catalyst::Plugin::ErrorCatcher::Email - an email emitter for Catalyst::Plugin::E
 
 =head1 VERSION
 
-version 0.0.8.3
+version 0.0.8.4
 
 =head1 SYNOPSIS
 

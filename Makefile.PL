@@ -18,6 +18,7 @@ my %WriteMakefileArgs = (
     'Catalyst::Plugin::ConfigLoader' => '0',
     'Catalyst::Plugin::StackTrace' => '0',
     'Catalyst::Test' => '0',
+    'Config::General' => '0',
     'DateTime' => '0',
     'File::Find::Rule' => '0',
     'File::Path' => '0',
@@ -50,7 +51,7 @@ my %WriteMakefileArgs = (
     'Path::Class' => '0',
     'Sys::Hostname' => '0'
   },
-  'VERSION' => '0.0.8.3',
+  'VERSION' => '0.0.8.4',
   'test' => {
     'TESTS' => 't/*.t t/bug/*.t'
   }
