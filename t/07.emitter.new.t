@@ -4,10 +4,10 @@ use strict;
 use warnings;
 
 use Test::More 0.92;
+use Test::Exception;
 
 BEGIN {
-    use FindBin;
-    use lib "$FindBin::Bin/lib";
+    use FindBin::libs;
 }
 
 BEGIN {
@@ -39,7 +39,12 @@ isa_ok (
 TestApp->config->{stacktrace}{enable} = 1;
 TestApp->config->{"Plugin::ErrorCatcher"}{enable} = 1;
 {
-    ok( my ($res,$c) = ctx_request('http://localhost/foo/crash_user'), 'request ok' );
+    my ($res,$c);
+
+    lives_ok {
+        ok( ($res,$c) = ctx_request('http://localhost/foo/crash_user'), 'request ok' );
+    } "survived request to exception URL";
+
     my $ec_msg;
     eval{ $ec_msg = $c->_errorcatcher_msg };
     ok( defined $ec_msg, 'parsed error message ok' );

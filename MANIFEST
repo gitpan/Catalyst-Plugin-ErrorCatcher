@@ -16,6 +16,7 @@ t/03.config.t
 t/04.trace.t
 t/05.emit.email.cc.t
 t/05.emit.email.t
+t/06.email.file.path.t
 t/06.emit.file.t
 t/07.emitter.moose.new.t
 t/07.emitter.new.t

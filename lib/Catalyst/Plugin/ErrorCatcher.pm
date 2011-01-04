@@ -1,6 +1,6 @@
 package Catalyst::Plugin::ErrorCatcher;
 BEGIN {
-  $Catalyst::Plugin::ErrorCatcher::VERSION = '0.0.8.4';
+  $Catalyst::Plugin::ErrorCatcher::VERSION = '0.0.8.5';
 }
 BEGIN {
   $Catalyst::Plugin::ErrorCatcher::DIST = 'Catalyst-Plugin-ErrorCatcher';
@@ -467,7 +467,7 @@ Catalyst::Plugin::ErrorCatcher - Catch application errors and emit them somewher
 
 =head1 VERSION
 
-version 0.0.8.4
+version 0.0.8.5
 
 =head1 SYNOPSIS
 
@@ -641,7 +641,7 @@ Chisel Wright <chisel@chizography.net>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Chisel Wright.
+This software is copyright (c) 2011 by Chisel Wright.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

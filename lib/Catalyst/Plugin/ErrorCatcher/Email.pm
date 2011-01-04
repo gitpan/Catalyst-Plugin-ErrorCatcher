@@ -1,6 +1,6 @@
 package Catalyst::Plugin::ErrorCatcher::Email;
 BEGIN {
-  $Catalyst::Plugin::ErrorCatcher::Email::VERSION = '0.0.8.4';
+  $Catalyst::Plugin::ErrorCatcher::Email::VERSION = '0.0.8.5';
 }
 BEGIN {
   $Catalyst::Plugin::ErrorCatcher::Email::DIST = 'Catalyst-Plugin-ErrorCatcher';
@@ -10,6 +10,7 @@ use strict;
 use warnings;
 
 use MIME::Lite;
+use Path::Class;
 use Sys::Hostname;
 
 sub emit {
@@ -108,8 +109,7 @@ sub _parse_tags {
         '%F' => sub{
             my $val=$c->_errorcatcher_first_frame->{file}||'UnknownFile';
             # ideally replace with cross-platform directory separator
-            $val =~ s{\A.+/(?:lib|script)/}{};
-            return $val;
+            return _munge_path($val);
         },
         '%l' => sub{$c->_errorcatcher_first_frame->{line}||'UnknownLine'},
         '%p' => sub{$c->_errorcatcher_first_frame->{pkg}||'UnknownPackage'},
@@ -143,6 +143,28 @@ sub _send_email {
     return;
 }
 
+sub _munge_path {
+    my $path_string = shift;
+    my $path_spec = Path::Class::dir($path_string);
+    my $path_re = qr{^(?:lib|script)$};
+#
+#    return $path_string
+#        if not grep { /${path_re}/ } $path_spec->dir_list;
+
+    my @dirs = $path_spec->dir_list;
+    my @new_dirs = ();
+
+    # work backwards through the path (it should be shorter)
+    # pop of everything until we match or exhaust the list
+    # (which we shouldn't because we already checked for a match)
+    while ( @dirs && $dirs[-1] !~ m/${path_re}/ ) {
+        unshift @new_dirs, pop @dirs;
+    }
+
+    # build a path for the list we built up and return it
+    return Path::Class::dir(@new_dirs)->stringify;
+}
+
 1;
 
 
@@ -154,7 +176,7 @@ Catalyst::Plugin::ErrorCatcher::Email - an email emitter for Catalyst::Plugin::E
 
 =head1 VERSION
 
-version 0.0.8.4
+version 0.0.8.5
 
 =head1 SYNOPSIS
 
@@ -215,7 +237,7 @@ Chisel Wright <chisel@chizography.net>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Chisel Wright.
+This software is copyright (c) 2011 by Chisel Wright.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

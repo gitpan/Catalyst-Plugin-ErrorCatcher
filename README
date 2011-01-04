@@ -3,7 +3,7 @@ NAME
     somewhere
 
 VERSION
-    version 0.0.8.4
+    version 0.0.8.5
 
 SYNOPSIS
       use Catalyst qw/-Debug StackTrace ErrorCatcher/;
@@ -150,7 +150,7 @@ AUTHOR
     Chisel Wright <chisel@chizography.net>
 
 COPYRIGHT AND LICENSE
-    This software is copyright (c) 2010 by Chisel Wright.
+    This software is copyright (c) 2011 by Chisel Wright.
 
     This is free software; you can redistribute it and/or modify it under
     the same terms as the Perl 5 programming language system itself.

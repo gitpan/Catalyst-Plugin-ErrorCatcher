@@ -1,5 +1,9 @@
 This file documents the revision history for Catalyst::Plugin::ErrorCatcher
 
+0.0.8.5   2011-01-04 22:56:54 Europe/London
+  - Make file/path munging behave more sensibly
+  - add lives_ok() tests
+
 0.0.8.4   2010-12-29 22:46:10 EST5EDT
   - RT#64278: Hopefully the final missing dependency
 

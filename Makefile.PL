@@ -23,13 +23,14 @@ my %WriteMakefileArgs = (
     'File::Find::Rule' => '0',
     'File::Path' => '0',
     'File::Slurp' => '0',
-    'FindBin' => '0',
+    'FindBin::libs' => '0',
     'IO::File' => '0',
     'MIME::Lite' => '0',
     'MRO::Compat' => '0',
     'Moose' => '0',
     'Path::Class' => '0',
     'Sys::Hostname' => '0',
+    'Test::Exception' => '0',
     'Test::More' => '0.92',
     'overload' => '0',
     'version' => '0'
@@ -51,7 +52,7 @@ my %WriteMakefileArgs = (
     'Path::Class' => '0',
     'Sys::Hostname' => '0'
   },
-  'VERSION' => '0.0.8.4',
+  'VERSION' => '0.0.8.5',
   'test' => {
     'TESTS' => 't/*.t t/bug/*.t'
   }
