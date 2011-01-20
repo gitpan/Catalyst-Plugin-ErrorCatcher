@@ -14,39 +14,41 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 5fbac53691e62d5b72b76e4996883f7e2dcf1621 Changes
+SHA1 45acb2f50a8be3061e87a7262b7da6397a9ef41f Changes
 SHA1 2a26f86001318a1afdf7b3aa074c56e67b66b826 LICENSE
-SHA1 8a97523758ece04afea77e5e9e2213a4092785a5 MANIFEST
+SHA1 4d5e54d2084564d716bfc93a0b65d29814d4466f MANIFEST
 SHA1 24a5a60c1c311b8915392fc17bc4e4ca4bbe10e4 MANIFEST.SKIP
-SHA1 5ac57ed69defc4c96969333f490d2f604a5bb95b META.yml
-SHA1 351aad8a7c0e6364d6ae82c318f5a9a2473a3a17 Makefile.PL
-SHA1 b6ad83f5e4746304b80fa40453aedc5d1061ccc4 README
+SHA1 891adab89fcdf92681b28cccbe24926f2658b8f3 META.yml
+SHA1 d5f07dda270258850aead2bd8f75d7b201eedc7f Makefile.PL
+SHA1 489fd219f3273782853e2baaf8e2e3800ca6f0cb README
 SHA1 91e978217f924a308a076c49f8ab4d56dbc6febc docs/SubmittingPatches.pod
-SHA1 71a20dfaf5507c708ea12aca37d7a6dc08ea53ec lib/Catalyst/Plugin/ErrorCatcher.pm
-SHA1 698d6e273a1a26b054f8e92d15f7d4a3960413f5 lib/Catalyst/Plugin/ErrorCatcher/Email.pm
-SHA1 29e30a1fc4905f1a71462a06d7faacbd9a032257 lib/Catalyst/Plugin/ErrorCatcher/File.pm
+SHA1 9f615432a6867a419f079f7c2995baee3983c24c lib/Catalyst/Plugin/ErrorCatcher.pm
+SHA1 c885fedb22b2711b58c8061876708ee6ae1c3445 lib/Catalyst/Plugin/ErrorCatcher/Email.pm
+SHA1 7be54081c96a05ff57fff61e51d1316aba8ad29b lib/Catalyst/Plugin/ErrorCatcher/File.pm
 SHA1 26425978dac25cdee265b48081e2a89e25cd4a35 t/00.basic.t
 SHA1 c3ae4b51a81956912e36bca143478c36c85d84e0 t/01.no.tabs.t
 SHA1 56ff89dd6e4425e62134816a56391731a02967d5 t/03.config.t
-SHA1 e24d66f1d30e788df723629eec7ed392cae55de2 t/04.trace.t
+SHA1 f737e3ec54def9ece64bcbce882f5c458f1c8741 t/04.trace.t
 SHA1 4d84e6cba5c8bd1bde3d9ae483cc7a5b0afd5567 t/05.emit.email.cc.t
-SHA1 ea94d3507be31ec0ed178dda7b4496f20dccdeaf t/05.emit.email.t
+SHA1 a41d72d4517035d7e9822a6d3e28c4a14dea9410 t/05.emit.email.t
 SHA1 19d7edb72b738a9f6ef0a178d63a76c7bbd45b36 t/06.email.file.path.t
 SHA1 fe7e4295876d190c845f400ba66a7d4cae33b58a t/06.emit.file.t
 SHA1 59a2612935028e56c6e06f5260432438c23ff373 t/07.emitter.moose.new.t
 SHA1 3b870c82b9b4a7db08a05ce2bb9b8d2c835ff1bf t/07.emitter.new.t
+SHA1 f6304a812bffbeb9f6eb8e1990a8ce0fe3aca0eb t/08.report.session.t
 SHA1 75dcc4d7e3266aeae33504ae99d633cec04f1c6e t/bug/RT54071.t
 SHA1 1ca03a0e31807ead5612c4774801279f2249c0be t/lib/My/Emitter.pm
 SHA1 3ec6fd5342b508414543726f13451dd2a5521b1d t/lib/My/MooseEmitter.pm
 SHA1 ef66b9772b330f309760def31c2d3c6a36a11a70 t/lib/NoAuth.pm
 SHA1 f22c906ca72a38331feedf252d3dbb3e37b603e3 t/lib/NoAuth/Controller/Foo.pm
 SHA1 da0bf0f7aeaea19f8ce683f3cba5152cc6773111 t/lib/NoAuth/Exception.pm
-SHA1 4b5413e91075c1f789ec8407cc7851f6a7e34ffe t/lib/TestApp.pm
+SHA1 615f985257336f429ec129b1de1d3159c6fdff67 t/lib/TestApp.pm
 SHA1 49d420cb969d9c3d1aa5325f35b53ed80f5e0583 t/lib/TestApp/Controller/Foo.pm
 SHA1 b721eca494a868418e5a8edec45823fd5834a554 t/lib/TestApp/Exception.pm
 SHA1 bf4c1c102f14922f9cf09994fcd63a4f1be3546d t/lib/noauth.conf
 SHA1 72f5e46458ad8d84cf0f9f15aa981f00da6d1276 t/lib/testapp-cc.conf
 SHA1 a026a49946baacdc21951509125f7802d86cabd0 t/lib/testapp-file.conf
+SHA1 d7d5ae0ca1cd7434db590964abd0217727fb307b t/lib/testapp-session.conf
 SHA1 bf4c1c102f14922f9cf09994fcd63a4f1be3546d t/lib/testapp.conf
 SHA1 af2865e9a987a3976f029b6a7890c3f57737cd95 t/lib/testapp_emitinit.conf
 SHA1 5454005a457f0f8c6915a0de69ab5fc599e6b07b t/lib/testapp_mooseemitinit.conf
@@ -56,7 +58,7 @@ SHA1 b30cbdfaf935017c4568c0c91b242438cb87786e t/release-pod-syntax.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.10 (GNU/Linux)
 
-iEYEARECAAYFAk0jpbsACgkQh4j7xTiFuxFjyACaApdBT85hvUQqgCpR99vCRbSQ
-iCoAoL8U/j0Cj/utwN91YyeeV+JHhqUQ
-=CAed
+iEYEARECAAYFAk04g2AACgkQh4j7xTiFuxHzFQCgwbGJwQ8erKEqMmouwCZhcEHK
+8eYAoIXRvR8r+LlXFTJ7mCsOjI8B+I+9
+=mOwV
 -----END PGP SIGNATURE-----
