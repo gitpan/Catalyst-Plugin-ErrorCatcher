@@ -10,9 +10,13 @@ docs/SubmittingPatches.pod
 lib/Catalyst/Plugin/ErrorCatcher.pm
 lib/Catalyst/Plugin/ErrorCatcher/Email.pm
 lib/Catalyst/Plugin/ErrorCatcher/File.pm
+lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/CaughtException.pm
+lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/Pg/MissingColumn.pm
+lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/TxnDo.pm
 t/00.basic.t
 t/01.no.tabs.t
 t/03.config.t
+t/04.cleaned.t
 t/04.trace.t
 t/05.emit.email.cc.t
 t/05.emit.email.t

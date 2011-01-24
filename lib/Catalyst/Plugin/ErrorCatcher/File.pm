@@ -1,6 +1,6 @@
 package Catalyst::Plugin::ErrorCatcher::File;
 BEGIN {
-  $Catalyst::Plugin::ErrorCatcher::File::VERSION = '0.0.8.6';
+  $Catalyst::Plugin::ErrorCatcher::File::VERSION = '0.0.8.7';
 }
 BEGIN {
   $Catalyst::Plugin::ErrorCatcher::File::DIST = 'Catalyst-Plugin-ErrorCatcher';
@@ -87,7 +87,7 @@ Catalyst::Plugin::ErrorCatcher::File - a file emitter for Catalyst::Plugin::Erro
 
 =head1 VERSION
 
-version 0.0.8.6
+version 0.0.8.7
 
 =head1 SYNOPSIS
 

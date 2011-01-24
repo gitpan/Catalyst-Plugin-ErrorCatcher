@@ -14,20 +14,24 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 45acb2f50a8be3061e87a7262b7da6397a9ef41f Changes
+SHA1 7817e4d1b396504a3dfc76d136580e7a9b124455 Changes
 SHA1 2a26f86001318a1afdf7b3aa074c56e67b66b826 LICENSE
-SHA1 4d5e54d2084564d716bfc93a0b65d29814d4466f MANIFEST
+SHA1 cf5d8d622d700c422b7863e9ebe980d74fda5270 MANIFEST
 SHA1 24a5a60c1c311b8915392fc17bc4e4ca4bbe10e4 MANIFEST.SKIP
-SHA1 891adab89fcdf92681b28cccbe24926f2658b8f3 META.yml
-SHA1 d5f07dda270258850aead2bd8f75d7b201eedc7f Makefile.PL
-SHA1 489fd219f3273782853e2baaf8e2e3800ca6f0cb README
+SHA1 a0e65e2d00d8c51ba8440651d83997bc93346a50 META.yml
+SHA1 77c4c3ab0b64374ebbde7c622fb99e1e6faa5815 Makefile.PL
+SHA1 d6d3f978eab12da482592b93a5ae0c0592070595 README
 SHA1 91e978217f924a308a076c49f8ab4d56dbc6febc docs/SubmittingPatches.pod
-SHA1 9f615432a6867a419f079f7c2995baee3983c24c lib/Catalyst/Plugin/ErrorCatcher.pm
-SHA1 c885fedb22b2711b58c8061876708ee6ae1c3445 lib/Catalyst/Plugin/ErrorCatcher/Email.pm
-SHA1 7be54081c96a05ff57fff61e51d1316aba8ad29b lib/Catalyst/Plugin/ErrorCatcher/File.pm
+SHA1 b0f2d53f3604cd990d979fbf7491d10577ebc0d6 lib/Catalyst/Plugin/ErrorCatcher.pm
+SHA1 a3371e9134b630537cc0a18be94163c27b598da2 lib/Catalyst/Plugin/ErrorCatcher/Email.pm
+SHA1 5aa14ae2b7d4596621918106608c2477f45940cb lib/Catalyst/Plugin/ErrorCatcher/File.pm
+SHA1 bb710ec1f2d25ed743f522e15eb4350482f3aac5 lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/CaughtException.pm
+SHA1 fd22d865c5661cd05439ae3514342d596cfe796d lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/Pg/MissingColumn.pm
+SHA1 f7e6a1aa5eecfa74e29b2147c925e274d48f7cda lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/TxnDo.pm
 SHA1 26425978dac25cdee265b48081e2a89e25cd4a35 t/00.basic.t
 SHA1 c3ae4b51a81956912e36bca143478c36c85d84e0 t/01.no.tabs.t
 SHA1 56ff89dd6e4425e62134816a56391731a02967d5 t/03.config.t
+SHA1 11df94de8d1b8053c56dfa1778b43813f395a10a t/04.cleaned.t
 SHA1 f737e3ec54def9ece64bcbce882f5c458f1c8741 t/04.trace.t
 SHA1 4d84e6cba5c8bd1bde3d9ae483cc7a5b0afd5567 t/05.emit.email.cc.t
 SHA1 a41d72d4517035d7e9822a6d3e28c4a14dea9410 t/05.emit.email.t
@@ -58,7 +62,7 @@ SHA1 b30cbdfaf935017c4568c0c91b242438cb87786e t/release-pod-syntax.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.10 (GNU/Linux)
 
-iEYEARECAAYFAk04g2AACgkQh4j7xTiFuxHzFQCgwbGJwQ8erKEqMmouwCZhcEHK
-8eYAoIXRvR8r+LlXFTJ7mCsOjI8B+I+9
-=mOwV
+iEYEARECAAYFAk098PYACgkQh4j7xTiFuxHZfwCfe2UFAuqMgBkDS+c1rptvLeyn
+z9wAoMsSWNW+dSmgwi3qYkR+rebjGPhV
+=+PB6
 -----END PGP SIGNATURE-----

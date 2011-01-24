@@ -1,5 +1,9 @@
 This file documents the revision history for Catalyst::Plugin::ErrorCatcher
 
+0.0.8.7   2011-01-24 21:36:49 Europe/London
+  - use plugins for tidying messages
+  - add more cleanup regexps
+
 0.0.8.6   2011-01-20 18:47:55 Europe/London
   - RT#60483: specify minimum versions for plugins
      to force the earliest MRO::Compat version

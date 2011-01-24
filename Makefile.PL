@@ -53,10 +53,11 @@ my %WriteMakefileArgs = (
     'IO::File' => '0',
     'MIME::Lite' => '0',
     'MRO::Compat' => '0',
+    'Module::Pluggable::Object' => '0',
     'Path::Class' => '0',
     'Sys::Hostname' => '0'
   },
-  'VERSION' => '0.0.8.6',
+  'VERSION' => '0.0.8.7',
   'test' => {
     'TESTS' => 't/*.t t/bug/*.t'
   }
