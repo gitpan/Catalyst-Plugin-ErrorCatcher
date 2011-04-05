@@ -57,7 +57,7 @@ my %WriteMakefileArgs = (
     'Path::Class' => '0',
     'Sys::Hostname' => '0'
   },
-  'VERSION' => '0.0.8.7',
+  'VERSION' => '0.0.8.8',
   'test' => {
     'TESTS' => 't/*.t t/bug/*.t'
   }

@@ -14,31 +14,31 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 7817e4d1b396504a3dfc76d136580e7a9b124455 Changes
+SHA1 c68753e2f49e993c48bf0597ce488ab9d39f65ef Changes
 SHA1 2a26f86001318a1afdf7b3aa074c56e67b66b826 LICENSE
 SHA1 cf5d8d622d700c422b7863e9ebe980d74fda5270 MANIFEST
 SHA1 24a5a60c1c311b8915392fc17bc4e4ca4bbe10e4 MANIFEST.SKIP
-SHA1 a0e65e2d00d8c51ba8440651d83997bc93346a50 META.yml
-SHA1 77c4c3ab0b64374ebbde7c622fb99e1e6faa5815 Makefile.PL
-SHA1 d6d3f978eab12da482592b93a5ae0c0592070595 README
+SHA1 ff72910ffbcb5d9e73b5e4ccc210f94b7433bfa0 META.yml
+SHA1 b11796d7f778c8343beaccb20c3d6810a9ef8198 Makefile.PL
+SHA1 a53ebb0f40661e4023b8bd0ad4d2c3c0998c095f README
 SHA1 91e978217f924a308a076c49f8ab4d56dbc6febc docs/SubmittingPatches.pod
-SHA1 b0f2d53f3604cd990d979fbf7491d10577ebc0d6 lib/Catalyst/Plugin/ErrorCatcher.pm
-SHA1 a3371e9134b630537cc0a18be94163c27b598da2 lib/Catalyst/Plugin/ErrorCatcher/Email.pm
-SHA1 5aa14ae2b7d4596621918106608c2477f45940cb lib/Catalyst/Plugin/ErrorCatcher/File.pm
-SHA1 bb710ec1f2d25ed743f522e15eb4350482f3aac5 lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/CaughtException.pm
-SHA1 fd22d865c5661cd05439ae3514342d596cfe796d lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/Pg/MissingColumn.pm
-SHA1 f7e6a1aa5eecfa74e29b2147c925e274d48f7cda lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/TxnDo.pm
+SHA1 fea7a0f4fe815f1d5e5a553a963d1c6bcf6086e7 lib/Catalyst/Plugin/ErrorCatcher.pm
+SHA1 fa72cf474e37eca176a8486a04e851f7db7f21b6 lib/Catalyst/Plugin/ErrorCatcher/Email.pm
+SHA1 67ca432dc3c4a4153f3d80cb1fc9afba677e4b1d lib/Catalyst/Plugin/ErrorCatcher/File.pm
+SHA1 90880a03a67466ea13c34648dd86d7b10ef9d9a9 lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/CaughtException.pm
+SHA1 0c124345c76bfda0e7a97c50f9743f9c8e3671ee lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/Pg/MissingColumn.pm
+SHA1 14e71f7b5067267acd4f8b00f13d2224bf1dc530 lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/TxnDo.pm
 SHA1 26425978dac25cdee265b48081e2a89e25cd4a35 t/00.basic.t
 SHA1 c3ae4b51a81956912e36bca143478c36c85d84e0 t/01.no.tabs.t
 SHA1 56ff89dd6e4425e62134816a56391731a02967d5 t/03.config.t
 SHA1 11df94de8d1b8053c56dfa1778b43813f395a10a t/04.cleaned.t
-SHA1 f737e3ec54def9ece64bcbce882f5c458f1c8741 t/04.trace.t
+SHA1 5053e25fa7b75ec3e96e25ea5aae3635c870bb23 t/04.trace.t
 SHA1 4d84e6cba5c8bd1bde3d9ae483cc7a5b0afd5567 t/05.emit.email.cc.t
 SHA1 a41d72d4517035d7e9822a6d3e28c4a14dea9410 t/05.emit.email.t
 SHA1 19d7edb72b738a9f6ef0a178d63a76c7bbd45b36 t/06.email.file.path.t
 SHA1 fe7e4295876d190c845f400ba66a7d4cae33b58a t/06.emit.file.t
-SHA1 59a2612935028e56c6e06f5260432438c23ff373 t/07.emitter.moose.new.t
-SHA1 3b870c82b9b4a7db08a05ce2bb9b8d2c835ff1bf t/07.emitter.new.t
+SHA1 c5aa1228ab516de6153d12b79093d3f8423826b8 t/07.emitter.moose.new.t
+SHA1 5faa0dc35b67d836aeb39f2c92ed0f0d7aa14043 t/07.emitter.new.t
 SHA1 f6304a812bffbeb9f6eb8e1990a8ce0fe3aca0eb t/08.report.session.t
 SHA1 75dcc4d7e3266aeae33504ae99d633cec04f1c6e t/bug/RT54071.t
 SHA1 1ca03a0e31807ead5612c4774801279f2249c0be t/lib/My/Emitter.pm
@@ -62,7 +62,7 @@ SHA1 b30cbdfaf935017c4568c0c91b242438cb87786e t/release-pod-syntax.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.10 (GNU/Linux)
 
-iEYEARECAAYFAk098PYACgkQh4j7xTiFuxHZfwCfe2UFAuqMgBkDS+c1rptvLeyn
-z9wAoMsSWNW+dSmgwi3qYkR+rebjGPhV
-=+PB6
+iEYEARECAAYFAk2bFjgACgkQh4j7xTiFuxE2hACgiFdlLWLf8HqAS4nINk3rD/B+
+jSYAnRZyFbAiNYrmKhTZjb7rcngBAMhN
+=GCQR
 -----END PGP SIGNATURE-----

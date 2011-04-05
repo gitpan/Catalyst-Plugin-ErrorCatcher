@@ -3,7 +3,7 @@ NAME
     somewhere
 
 VERSION
-    version 0.0.8.7
+    version 0.0.8.8
 
 SYNOPSIS
       use Catalyst qw/-Debug StackTrace ErrorCatcher/;
@@ -17,12 +17,13 @@ CONFIGURATION
     The plugin is configured in a similar manner to other Catalyst plugins:
 
       <Plugin::ErrorCatcher>
-        enable          1
-        context         5
-        always_log      0
-        include_session 0
+          enable                1
+          context               5
+          always_log            0
+          include_session       0
+          user_identified_by    username
 
-        emit_module A::Module
+          emit_module           A::Module
       </Plugin::ErrorCatcher>
 
     enable
@@ -69,6 +70,14 @@ CONFIGURATION
 
         When set to 1 the report will include a "Data::Dump::pp()"
         representation of the request's session.
+
+    user_identified_by
+        If there's a logged-in user use the specified value as the method to
+        identify the user.
+
+        If the specified value is invalid the module defaults to using *id*.
+
+        If unspecified the value defaults to *id*.
 
 STACKTRACE IN REPORTS WHEN NOT RUNNING IN DEBUG MODE
     It is possible to run your application in non-Debug mode, and still have

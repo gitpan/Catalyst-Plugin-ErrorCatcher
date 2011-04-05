@@ -1,6 +1,6 @@
 package Catalyst::Plugin::ErrorCatcher;
 BEGIN {
-  $Catalyst::Plugin::ErrorCatcher::VERSION = '0.0.8.7';
+  $Catalyst::Plugin::ErrorCatcher::VERSION = '0.0.8.8';
 }
 BEGIN {
   $Catalyst::Plugin::ErrorCatcher::DIST = 'Catalyst-Plugin-ErrorCatcher';
@@ -34,10 +34,11 @@ sub setup {
     my $config = $c->config->{'Plugin::ErrorCatcher'} || {};
 
     # set some defaults
-    $config->{context}         ||= 4;
-    $config->{verbose}         ||= 0;
-    $config->{always_log}      ||= 0;
-    $config->{include_session} ||= 0;
+    $config->{context}            ||= 4;
+    $config->{verbose}            ||= 0;
+    $config->{always_log}         ||= 0;
+    $config->{include_session}    ||= 0;
+    $config->{user_identified_by} ||= 'id';
     
     # start with an empty hash
     $c->_errorcatcher_emitter_of({});
@@ -331,13 +332,16 @@ sub _prepare_message {
     $feedback .= "     URI: " . ($c->request->uri||q{n/a}) . "\n";
     $feedback .= "  Method: " . ($c->request->method||q{n/a}) . "\n";
 
+    my $user_identifier_method =
+        $c->_errorcatcher_cfg->{user_identified_by};
     # if we have a logged-in user, add to the feedback
     if (
            $c->can('user_exists')
         && $c->user_exists
-        && $c->user->can('id')
+        && $c->user->can($user_identifier_method)
     ) {
-        $feedback .= "    User: " . $c->user->id;
+        $feedback .= "    User: " . $c->user->$user_identifier_method;
+        $feedback .= " [$user_identifier_method]";
         if (ref $c->user) {
             $feedback .= " (" . ref($c->user) . ")\n";
         }
@@ -469,7 +473,7 @@ Catalyst::Plugin::ErrorCatcher - Catch application errors and emit them somewher
 
 =head1 VERSION
 
-version 0.0.8.7
+version 0.0.8.8
 
 =head1 SYNOPSIS
 
@@ -486,12 +490,13 @@ L<Catalyst::Plugin::StackTrace> plugin.
 The plugin is configured in a similar manner to other Catalyst plugins:
 
   <Plugin::ErrorCatcher>
-    enable          1
-    context         5
-    always_log      0
-    include_session 0
+      enable                1
+      context               5
+      always_log            0
+      include_session       0
+      user_identified_by    username
 
-    emit_module A::Module
+      emit_module           A::Module
   </Plugin::ErrorCatcher>
 
 =over 4
@@ -543,6 +548,15 @@ value to I<true>.
 
 When set to 1 the report will include a C<Data::Dump::pp()> representation of
 the request's session. 
+
+=item B<user_identified_by>
+
+If there's a logged-in user use the specified value as the method to identify
+the user.
+
+If the specified value is invalid the module defaults to using I<id>.
+
+If unspecified the value defaults to I<id>.
 
 =back
 
