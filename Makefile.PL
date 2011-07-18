@@ -4,7 +4,7 @@ use warnings;
 
 BEGIN { require 5.008001; }
 
-use ExtUtils::MakeMaker 6.31;
+use ExtUtils::MakeMaker 6.30;
 
 
 
@@ -20,6 +20,7 @@ my %WriteMakefileArgs = (
     'Catalyst::Plugin::Session::State::Cookie' => '0',
     'Catalyst::Plugin::Session::Store::File' => '0',
     'Catalyst::Plugin::StackTrace' => '0.10',
+    'Catalyst::Runtime' => '5.80',
     'Catalyst::Test' => '0',
     'Config::General' => '0',
     'DateTime' => '0',
@@ -30,34 +31,34 @@ my %WriteMakefileArgs = (
     'IO::File' => '0',
     'MIME::Lite' => '0',
     'MRO::Compat' => '0',
-    'Moose' => '0',
     'Path::Class' => '0',
     'Sys::Hostname' => '0',
     'Test::Exception' => '0',
     'Test::More' => '0.92',
+    'namespace::autoclean' => '0',
     'overload' => '0',
     'version' => '0'
   },
   'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.31'
+    'ExtUtils::MakeMaker' => '6.30'
   },
   'DISTNAME' => 'Catalyst-Plugin-ErrorCatcher',
   'EXE_FILES' => [],
   'LICENSE' => 'perl',
   'NAME' => 'Catalyst::Plugin::ErrorCatcher',
   'PREREQ_PM' => {
-    'Class::Data::Accessor' => '0',
+    'Catalyst::ClassData' => '0',
     'Data::Dump' => '0',
     'DateTime' => '0',
     'File::Slurp' => '0',
     'IO::File' => '0',
     'MIME::Lite' => '0',
-    'MRO::Compat' => '0',
     'Module::Pluggable::Object' => '0',
+    'Moose' => '0',
     'Path::Class' => '0',
     'Sys::Hostname' => '0'
   },
-  'VERSION' => '0.0.8.8',
+  'VERSION' => '0.0.8.9',
   'test' => {
     'TESTS' => 't/*.t t/bug/*.t'
   }

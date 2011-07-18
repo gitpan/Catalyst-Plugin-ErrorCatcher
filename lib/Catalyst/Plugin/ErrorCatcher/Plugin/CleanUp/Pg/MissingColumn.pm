@@ -1,6 +1,6 @@
 package Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::Pg::MissingColumn;
 BEGIN {
-  $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::Pg::MissingColumn::VERSION = '0.0.8.8';
+  $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::Pg::MissingColumn::VERSION = '0.0.8.9';
 }
 BEGIN {
   $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::Pg::MissingColumn::DIST = 'Catalyst-Plugin-ErrorCatcher';
@@ -40,7 +40,7 @@ Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::Pg::MissingColumn
 
 =head1 VERSION
 
-version 0.0.8.8
+version 0.0.8.9
 
 =head1 AUTHOR
 

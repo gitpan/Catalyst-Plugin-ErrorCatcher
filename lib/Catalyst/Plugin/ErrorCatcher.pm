@@ -1,25 +1,26 @@
 package Catalyst::Plugin::ErrorCatcher;
 BEGIN {
-  $Catalyst::Plugin::ErrorCatcher::VERSION = '0.0.8.8';
+  $Catalyst::Plugin::ErrorCatcher::VERSION = '0.0.8.9';
 }
 BEGIN {
   $Catalyst::Plugin::ErrorCatcher::DIST = 'Catalyst-Plugin-ErrorCatcher';
 }
 # ABSTRACT: Catch application errors and emit them somewhere
-use strict;
-use warnings;
+use Moose;
+    with 'Catalyst::ClassData';
 use 5.008001;
-use base qw/Class::Data::Accessor/;
 use IO::File;
-use MRO::Compat;
 use Module::Pluggable::Object;
 
-__PACKAGE__->mk_classaccessor(qw/_errorcatcher/);
-__PACKAGE__->mk_classaccessor(qw/_errorcatcher_msg/);
-__PACKAGE__->mk_classaccessor(qw/_errorcatcher_cfg/);
-__PACKAGE__->mk_classaccessor(qw/_errorcatcher_c_cfg/);
-__PACKAGE__->mk_classaccessor(qw/_errorcatcher_first_frame/);
-__PACKAGE__->mk_classaccessor(qw/_errorcatcher_emitter_of/);
+__PACKAGE__->mk_classdata('_errorcatcher');
+__PACKAGE__->mk_classdata('_errorcatcher_msg');
+__PACKAGE__->mk_classdata('_errorcatcher_cfg');
+__PACKAGE__->mk_classdata('_errorcatcher_c_cfg');
+__PACKAGE__->mk_classdata('_errorcatcher_first_frame');
+__PACKAGE__->mk_classdata('_errorcatcher_emitter_of');
+
+__PACKAGE__->meta()->make_immutable();
+no Moose;
 
 sub setup {
     my $c = shift @_;
@@ -425,6 +426,7 @@ sub _keep_frames {
         $c->_errorcatcher( $stacktrace );
     }
     else {
+        $c->_errorcatcher( undef );
         $c->log->debug(
                 __PACKAGE__
             . q{ has no stack-trace information}
@@ -473,7 +475,7 @@ Catalyst::Plugin::ErrorCatcher - Catch application errors and emit them somewher
 
 =head1 VERSION
 
-version 0.0.8.8
+version 0.0.8.9
 
 =head1 SYNOPSIS
 
