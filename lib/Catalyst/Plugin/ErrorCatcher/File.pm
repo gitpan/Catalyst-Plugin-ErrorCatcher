@@ -1,8 +1,8 @@
 package Catalyst::Plugin::ErrorCatcher::File;
-BEGIN {
-  $Catalyst::Plugin::ErrorCatcher::File::VERSION = '0.0.8.9';
+{
+  $Catalyst::Plugin::ErrorCatcher::File::VERSION = '0.0.8.10';
 }
-BEGIN {
+{
   $Catalyst::Plugin::ErrorCatcher::File::DIST = 'Catalyst-Plugin-ErrorCatcher';
 }
 # ABSTRACT: a file emitter for Catalyst::Plugin::ErrorCatcher
@@ -87,7 +87,7 @@ Catalyst::Plugin::ErrorCatcher::File - a file emitter for Catalyst::Plugin::Erro
 
 =head1 VERSION
 
-version 0.0.8.9
+version 0.0.8.10
 
 =head1 SYNOPSIS
 
@@ -113,7 +113,7 @@ In your application configuration:
 
 =head1 AUTHOR
 
-Chisel Wright <chisel@chizography.net>
+Chisel <chisel@chizography.net>
 
 =head1 COPYRIGHT AND LICENSE
 

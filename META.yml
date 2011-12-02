@@ -1,7 +1,7 @@
 ---
 abstract: 'Catch application errors and emit them somewhere'
 author:
-  - 'Chisel Wright <chisel@chizography.net>'
+  - 'Chisel <chisel@chizography.net>'
 build_requires:
   Catalyst: 0
   Catalyst::Controller: 0
@@ -19,6 +19,7 @@ build_requires:
   File::Path: 0
   File::Slurp: 0
   FindBin::libs: 0
+  HTTP::Request::Common: 0
   IO::File: 0
   MIME::Lite: 0
   MRO::Compat: 0
@@ -26,13 +27,15 @@ build_requires:
   Sys::Hostname: 0
   Test::Exception: 0
   Test::More: 0.92
+  Test::UseAllModules: 0
+  base: 0
   namespace::autoclean: 0
   overload: 0
   version: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.30
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.200006, CPAN::Meta::Converter version 2.110930'
+generated_by: 'Dist::Zilla version 4.300003, CPAN::Meta::Converter version 2.110930'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -43,11 +46,17 @@ requires:
   Data::Dump: 0
   DateTime: 0
   File::Slurp: 0
+  File::Type: 0
   IO::File: 0
   MIME::Lite: 0
   Module::Pluggable::Object: 0
   Moose: 0
   Path::Class: 0
   Sys::Hostname: 0
-  perl: 5.008001
-version: 0.0.8.9
+  perl: 5.008004
+  strict: 0
+  warnings: 0
+resources:
+  bugtracker: http://rt.cpan.org/Public/Dist/Display.html?Name=Catalyst-Plugin-ErrorCatcher
+  repository: git://github.com/chiselwright/catalyst-plugin-errorcatcher
+version: 0.0.8.10

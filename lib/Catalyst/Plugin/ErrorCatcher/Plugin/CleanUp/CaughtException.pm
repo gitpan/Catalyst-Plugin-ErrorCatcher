@@ -1,8 +1,8 @@
 package Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::CaughtException;
-BEGIN {
-  $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::CaughtException::VERSION = '0.0.8.9';
+{
+  $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::CaughtException::VERSION = '0.0.8.10';
 }
-BEGIN {
+{
   $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::CaughtException::DIST = 'Catalyst-Plugin-ErrorCatcher';
 }
 use strict;
@@ -31,21 +31,22 @@ sub tidy_message {
 }
 
 1;
+# ABSTRACT: cleanup caught exception messages from Pg
 
 __END__
 =pod
 
 =head1 NAME
 
-Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::CaughtException
+Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::CaughtException - cleanup caught exception messages from Pg
 
 =head1 VERSION
 
-version 0.0.8.9
+version 0.0.8.10
 
 =head1 AUTHOR
 
-Chisel Wright <chisel@chizography.net>
+Chisel <chisel@chizography.net>
 
 =head1 COPYRIGHT AND LICENSE
 

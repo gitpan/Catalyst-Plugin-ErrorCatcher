@@ -10,7 +10,6 @@ BEGIN {
 
 use Test::More;
 
-eval "use Test::HasVersion";
-plan skip_all => "Test::HasVersion required for testing version numbers"
+eval "use Test::Kwalitee";
+plan skip_all => "Test::Kwalitee required for testing kwalitee"
   if $@;
-all_pm_version_ok();

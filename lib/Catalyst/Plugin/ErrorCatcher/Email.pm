@@ -1,8 +1,8 @@
 package Catalyst::Plugin::ErrorCatcher::Email;
-BEGIN {
-  $Catalyst::Plugin::ErrorCatcher::Email::VERSION = '0.0.8.9';
+{
+  $Catalyst::Plugin::ErrorCatcher::Email::VERSION = '0.0.8.10';
 }
-BEGIN {
+{
   $Catalyst::Plugin::ErrorCatcher::Email::DIST = 'Catalyst-Plugin-ErrorCatcher';
 }
 # ABSTRACT: an email emitter for Catalyst::Plugin::ErrorCatcher
@@ -178,7 +178,7 @@ Catalyst::Plugin::ErrorCatcher::Email - an email emitter for Catalyst::Plugin::E
 
 =head1 VERSION
 
-version 0.0.8.9
+version 0.0.8.10
 
 =head1 SYNOPSIS
 
@@ -235,7 +235,7 @@ Allowing you to set your subject like this:
 
 =head1 AUTHOR
 
-Chisel Wright <chisel@chizography.net>
+Chisel <chisel@chizography.net>
 
 =head1 COPYRIGHT AND LICENSE
 

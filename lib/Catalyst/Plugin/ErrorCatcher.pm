@@ -1,14 +1,15 @@
 package Catalyst::Plugin::ErrorCatcher;
-BEGIN {
-  $Catalyst::Plugin::ErrorCatcher::VERSION = '0.0.8.9';
+{
+  $Catalyst::Plugin::ErrorCatcher::VERSION = '0.0.8.10';
 }
-BEGIN {
+{
   $Catalyst::Plugin::ErrorCatcher::DIST = 'Catalyst-Plugin-ErrorCatcher';
 }
 # ABSTRACT: Catch application errors and emit them somewhere
 use Moose;
     with 'Catalyst::ClassData';
-use 5.008001;
+use 5.008004;
+use File::Type;
 use IO::File;
 use Module::Pluggable::Object;
 
@@ -297,6 +298,89 @@ sub _cleaned_error_message {
     return $error_message;
 }
 
+
+sub append_feedback {
+    my $fb_ref = shift;
+    my $data   = shift;
+    $$fb_ref ||= q{};
+    $$fb_ref  .= $data . qq{\n};
+}
+
+sub append_feedback_emptyline {
+    append_feedback($_[0], q[]);
+}
+
+sub append_feedback_keyvalue {
+    # don't add undefined values
+    return
+        unless defined $_[2];
+    my $padding = $_[3] || 8;
+    append_feedback(
+        $_[0],
+        sprintf("%${padding}s: %s", $_[1], $_[2])
+    );
+    return;
+}
+
+sub sanitise_param {
+    my $value   = shift;
+
+    # stolen from Data::Dumper::qquote
+    my $dumped_value;
+    {
+        my %esc = (
+            "\a" => "\\a",
+            "\b" => "\\b",
+            "\t" => "\\t",
+            "\n" => "\\n",
+            "\f" => "\\f",
+            "\r" => "\\r",
+            "\e" => "\\e",
+        );
+        ($dumped_value = $value) =~ s{([\a\b\t\n\f\r\e])}{$esc{$1}}g;
+    }
+
+    # if it's short, just show it
+    return $dumped_value
+        if (length($value) < 40);
+
+    # make a guess at a possible filetype
+    my $ft      = File::Type->new();
+    my $type    = $ft->checktype_contents( $value );
+
+    # if our mimetype isn't application/octet-stream just report what was
+    # submitted
+    if ($type ne 'application/octet-stream') {
+        return $type;
+    }
+
+    # getting here means we're 'application/octet-stream'
+    # we could make guesses if we're really text/plain but for now
+    # ... we're long, return a substring of ourseld
+    # (if this gives troublesome results we'll tweak accordingly)
+    return sprintf(
+        '%s...[truncated]',
+        substr($dumped_value, 0, 40)
+    );
+}
+
+sub append_output_params {
+    my $fb_ref = shift;
+    my ($label,$params) = @_;
+    return unless keys %$params;
+    # work out the longest key
+    # (http://www.webmasterkb.com/Uwe/Forum.aspx/perl/7596/Maximum-length-of-hash-key)
+    my $l; $l|=$_ foreach keys %$params; $l=length $l;
+    # give the next set of output a header
+    append_feedback($fb_ref, "Params ($label):");
+    # output the key-value pairs
+    foreach my $k (sort keys %{$params}) {
+        my $processed_value = sanitise_param($params->{$k});
+        append_feedback_keyvalue($fb_ref, $k, $processed_value, $l+2);
+    }
+    append_feedback_emptyline($fb_ref);
+}
+
 sub _prepare_message {
     my $c = shift;
     my ($feedback, $full_error, $parsed_error);
@@ -309,15 +393,17 @@ sub _prepare_message {
     $parsed_error = _cleaned_error_message($full_error);
 
     # A title for the feedback
-    $feedback .= qq{Exception caught:\n};
+    append_feedback(\$feedback, qq{Exception caught:} );
+    append_feedback_emptyline(\$feedback);
 
     # the (parsed) error
-    $feedback .= "\n   Error: " . $parsed_error . "\n";
+    append_feedback_keyvalue(\$feedback, "Error", $parsed_error);
 
     # general request information
     # some of these aren't always defined...
-    $feedback .= "    Time: " . scalar(localtime) . "\n";
+    append_feedback_keyvalue(\$feedback, "Time", scalar(localtime));
 
+    # TODO use append_...() method
     $feedback .= "  Client: " . $c->request->address
         if (defined $c->request->address);
     if (defined $c->request->hostname) {
@@ -327,12 +413,12 @@ sub _prepare_message {
         $feedback .= "\n";
     }
 
-    if (defined $c->request->user_agent) {
-        $feedback .= "   Agent: " . $c->request->user_agent . "\n";
-    }
-    $feedback .= "     URI: " . ($c->request->uri||q{n/a}) . "\n";
-    $feedback .= "  Method: " . ($c->request->method||q{n/a}) . "\n";
+    append_feedback_keyvalue(\$feedback, 'Agent',   $c->request->user_agent);
+    append_feedback_keyvalue(\$feedback, 'URI',    ($c->request->uri    || q{n/a}));
+    append_feedback_keyvalue(\$feedback, 'Method', ($c->request->method || q{n/a}));
+    append_feedback_keyvalue(\$feedback, 'Referer', $c->request->referer);
 
+    # TODO use append_...() method
     my $user_identifier_method =
         $c->_errorcatcher_cfg->{user_identified_by};
     # if we have a logged-in user, add to the feedback
@@ -350,6 +436,14 @@ sub _prepare_message {
             $feedback .= "\n";
         }
     }
+
+    my $params; # share with GET and POST output
+    append_feedback_emptyline(\$feedback);
+    # output any GET params
+    append_output_params(\$feedback, 'GET', $c->request->query_parameters);
+
+    # output any POST params
+    append_output_params(\$feedback, 'POST', $c->request->body_parameters);
 
     if ('ARRAY' eq ref($c->_errorcatcher)) {
         # push on information and context
@@ -375,12 +469,16 @@ sub _prepare_message {
                 $c->_errorcatcher_cfg->{context}
             );
 
-            $feedback .= "\nPackage: $pkg\n   Line: $line\n   File: $file\n";
-            $feedback .= "\n$code_preview\n";
+            append_feedback_keyvalue(\$feedback, 'Package', $pkg);
+            append_feedback_keyvalue(\$feedback, 'Line',    $line);
+            append_feedback_keyvalue(\$feedback, 'File',    $file);
+            append_feedback_emptyline(\$feedback);
+            append_feedback(\$feedback, $code_preview);
         }
     }
     else {
-        $feedback .= "\nStack trace unavailable - use and enable Catalyst::Plugin::StackTrace\n";
+        append_feedback_emptyline(\$feedback);
+        append_feedback(\$feedback, "Stack trace unavailable - use and enable Catalyst::Plugin::StackTrace");
     }
 
     # RT-64492 - add session data if requested
@@ -390,17 +488,20 @@ sub _prepare_message {
     ) {
         eval { require Data::Dump };
         if (my $e=$@) {
-            $feedback .= "\nSession data requested but failed to require Data::Dump:\n";
-            $feedback .= "    $e\n"
+            append_feedback(\$feedback, 'Session data requested but failed to require Data::Dump:');
+            append_feedback(\$feedback, "  $e");
         }
         else {
-            $feedback .= "\nSession Data:\n" . Data::Dump::pp($c->session) . "\n";
+            append_feedback(\$feedback, 'Session Data');
+            append_feedback(\$feedback,  Data::Dump::pp($c->session));
         }
     }
 
     # in case we bugger up the s/// on the original error message
     if ($full_error) {
-        $feedback .= "\nOriginal Error:\n\n$full_error";
+        append_feedback(\$feedback, 'Original Error:');
+        append_feedback_emptyline(\$feedback);
+        append_feedback(\$feedback, $full_error);
     }
 
     # store it, otherwise we've done the above for mothing
@@ -475,7 +576,7 @@ Catalyst::Plugin::ErrorCatcher - Catch application errors and emit them somewher
 
 =head1 VERSION
 
-version 0.0.8.9
+version 0.0.8.10
 
 =head1 SYNOPSIS
 
@@ -667,7 +768,7 @@ implementation.
 
 =head1 AUTHOR
 
-Chisel Wright <chisel@chizography.net>
+Chisel <chisel@chizography.net>
 
 =head1 COPYRIGHT AND LICENSE
 

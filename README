@@ -3,7 +3,7 @@ NAME
     somewhere
 
 VERSION
-    version 0.0.8.9
+    version 0.0.8.10
 
 SYNOPSIS
       use Catalyst qw/-Debug StackTrace ErrorCatcher/;
@@ -167,7 +167,7 @@ THANKS
     first implementation.
 
 AUTHOR
-    Chisel Wright <chisel@chizography.net>
+    Chisel <chisel@chizography.net>
 
 COPYRIGHT AND LICENSE
     This software is copyright (c) 2011 by Chisel Wright.
