@@ -3,7 +3,7 @@ NAME
     somewhere
 
 VERSION
-    version 0.0.8.10
+    version 0.0.8.11
 
 SYNOPSIS
       use Catalyst qw/-Debug StackTrace ErrorCatcher/;
@@ -154,7 +154,11 @@ CUSTOM EMIT CLASSES
     see fit.
 
 KNOWN ISSUES
-    The test-suite coverage is quite low.
+    BODY tests failing (Catalyst >=5.90008)
+        Summary:
+        https://github.com/chiselwright/catalyst-plugin-errorcatcher/pull/1
+
+        Bug report: https://rt.cpan.org/Public/Bug/Display.html?id=75607
 
 SEE ALSO
     Catalyst, Catalyst::Plugin::StackTrace
@@ -165,6 +169,9 @@ THANKS
 
     Ash Berlin for guiding me in the right direction after a known hacky
     first implementation.
+
+CONTRIBUTORS
+    Fitz Elliot <https://github.com/felliott/>
 
 AUTHOR
     Chisel <chisel@chizography.net>

@@ -77,16 +77,16 @@ TestApp->config->{"Plugin::ErrorCatcher"}{enable} = 1;
         qr{Referer: },
         'no referer information in stacktrace'
     );
-    # RT-72781 - we shouldn't be seeing any GET/POST sections
+    # RT-72781 - we shouldn't be seeing any QUERY/BODY sections
     unlike(
         $ec_msg,
-        qr{Params \(GET\): },
-        'no GET params information in stacktrace'
+        qr{Params \(QUERY\): },
+        'no QUERY params information in stacktrace'
     );
     unlike(
         $ec_msg,
-        qr{Params \(POST\): },
-        'no POST params information in stacktrace'
+        qr{Params \(BODY\): },
+        'no BODY params information in stacktrace'
     );
 }
 
@@ -185,7 +185,7 @@ TestApp->config->{"Plugin::ErrorCatcher"}{enable} = 1;
     # we should have some referer information
     _has_referer_ok($ec_msg);
 }
-# test output with GET params
+# test output with QUERY params
 {
     # make a request with params
     ok( my ($res,$c) =
@@ -197,15 +197,15 @@ TestApp->config->{"Plugin::ErrorCatcher"}{enable} = 1;
     # we should have some referer information
     _has_referer_ok($ec_msg);
     # we should have the get header and lines with the key-value pairs
-    _has_GET_output($ec_msg);
+    _has_QUERY_output($ec_msg);
     # we should have keys and values for each query param
-    _has_keys_for_section('GET', [qw(one went long_thingy)], $ec_msg);
+    _has_keys_for_section('QUERY', [qw(one went long_thingy)], $ec_msg);
 }
-# test output with POST params
+# test output with BODY params
 {
     # we still need to get to $c
-    ok ( my (undef,$c) = ctx_request('http://localhost/ok'), 'setup $c for POST');
-    # make a request with POST data
+    ok ( my (undef,$c) = ctx_request('http://localhost/ok'), 'setup $c for BODY');
+    # make a request with BODY data
     use HTTP::Request::Common;
     my $response = request POST '/foo/referer', [
         bar         => 'baz',
@@ -219,15 +219,15 @@ TestApp->config->{"Plugin::ErrorCatcher"}{enable} = 1;
     # we should have some referer information
     _has_referer_ok($ec_msg);
     # we should have the get header and lines with the key-value pairs
-    _has_POST_output($ec_msg);
+    _has_BODY_output($ec_msg);
     # we should have keys and values for each query param
-    _has_keys_for_section('POST', [qw(bar something)], $ec_msg);
+    _has_keys_for_section('BODY', [qw(bar something)], $ec_msg);
 }
-# test output with both GET and POST params
+# test output with both QUERY and BODY params
 {
     # we still need to get to $c; this appears to be the only way
-    ok ( my (undef,$c) = ctx_request('http://localhost/ok'), 'setup $c for POST');
-    # make a request with POST data
+    ok ( my (undef,$c) = ctx_request('http://localhost/ok'), 'setup $c for BODY');
+    # make a request with BODY data
     use HTTP::Request::Common;
     my $response = request POST '/foo/referer?fruit=banana&animal=kangaroo', [
         vampire     => 'joe random',
@@ -241,24 +241,24 @@ TestApp->config->{"Plugin::ErrorCatcher"}{enable} = 1;
     # we should have some referer information
     _has_referer_ok($ec_msg);
 
-    # GET
+    # QUERY
     # we should have the get header and lines with the key-value pairs
-    _has_GET_output($ec_msg);
+    _has_QUERY_output($ec_msg);
     # we should have keys and values for each query param
-    _has_keys_for_section('GET', [qw(fruit animal)], $ec_msg);
+    _has_keys_for_section('QUERY', [qw(fruit animal)], $ec_msg);
 
-    # POST
+    # BODY
     # we should have the get header and lines with the key-value pairs
-    _has_POST_output($ec_msg);
+    _has_BODY_output($ec_msg);
     # we should have keys and values for each query param
-    _has_keys_for_section('POST', [qw(vampire slayer)], $ec_msg);
+    _has_keys_for_section('BODY', [qw(vampire slayer)], $ec_msg);
 }
-# test output with both GET and POST params
+# test output with both QUERY and BODY params
 # - test with a case where we don't set the referer
 {
     # we still need to get to $c; this appears to be the only way
     ok ( my (undef,$c) = ctx_request('http://localhost/ok'), 'setup $c for POST');
-    # make a request with POST data
+    # make a request with BODY data
     use HTTP::Request::Common;
     my $response = request POST '/foo/not_ok?fruit=banana&animal=kangaroo', [
         vampire     => 'joe random',
@@ -272,23 +272,23 @@ TestApp->config->{"Plugin::ErrorCatcher"}{enable} = 1;
     # we should have some referer information
     _has_no_referer_ok($ec_msg);
 
-    # GET
+    # QUERY
     # we should have the get header and lines with the key-value pairs
-    _has_GET_output($ec_msg);
+    _has_QUERY_output($ec_msg);
     # we should have keys and values for each query param
-    _has_keys_for_section('GET', [qw(fruit animal)], $ec_msg);
+    _has_keys_for_section('QUERY', [qw(fruit animal)], $ec_msg);
 
-    # POST
+    # BODY
     # we should have the get header and lines with the key-value pairs
-    _has_POST_output($ec_msg);
+    _has_BODY_output($ec_msg);
     # we should have keys and values for each query param
-    _has_keys_for_section('POST', [qw(vampire slayer)], $ec_msg);
+    _has_keys_for_section('BODY', [qw(vampire slayer)], $ec_msg);
 }
 # test output with long values in parameters
 {
     # we still need to get to $c; this appears to be the only way
     ok ( my (undef,$c) = ctx_request('http://localhost/ok'), 'setup $c for POST');
-    # make a request with POST data
+    # make a request with BODY data
     use HTTP::Request::Common;
     my $response = request POST '/foo/not_ok?integer=69&fruit=' . 'banana' x 10, [
         long_text => 'kangaroo' x 8,
@@ -308,27 +308,27 @@ TestApp->config->{"Plugin::ErrorCatcher"}{enable} = 1;
     # we should have some referer information
     _has_no_referer_ok($ec_msg);
 
-    # GET
+    # QUERY
     # we should have the get header and lines with the key-value pairs
-    _has_GET_output($ec_msg);
+    _has_QUERY_output($ec_msg);
     # we should have keys and values for each query param
-    _has_keys_for_section('GET', [qw(fruit integer)], $ec_msg);
+    _has_keys_for_section('QUERY', [qw(fruit integer)], $ec_msg);
 
-    # POST
+    # BODY
     # we should have the get header and lines with the key-value pairs
-    _has_POST_output($ec_msg);
+    _has_BODY_output($ec_msg);
     # we should have keys and values for each query param
-    _has_keys_for_section('POST', [qw(image_gif image_png long_text pdf_file normal evil)], $ec_msg);
+    _has_keys_for_section('BODY', [qw(image_gif image_png long_text pdf_file normal evil)], $ec_msg);
 
     # check the values look sane
-    _has_value_for_key('POST', 'image_gif', 'image/gif', $ec_msg);
-    _has_value_for_key('POST', 'image_png', 'image/x-png', $ec_msg);
-    _has_value_for_key('POST', 'pdf_file',  'application/pdf', $ec_msg);
-    _has_value_for_key('POST', 'normal',    'short_thing', $ec_msg);
-    _has_value_for_key('POST', 'long_text', 'kangarookangarookangarookangarookangaroo...[truncated]', $ec_msg);
-    _has_value_for_key( 'GET', 'fruit',     'bananabananabananabananabananabananabana...[truncated]', $ec_msg);
-    _has_value_for_key( 'GET', 'integer',   69, $ec_msg);
-    _has_value_for_key( 'GET', 'evil',      'two\nlines', $ec_msg);
+    _has_value_for_key( 'BODY', 'image_gif', qr{image/gif}, $ec_msg);
+    _has_value_for_key( 'BODY', 'image_png', qr{image/x-png}, $ec_msg);
+    _has_value_for_key( 'BODY', 'pdf_file',  qr{application/pdf}, $ec_msg);
+    _has_value_for_key( 'BODY', 'normal',    qr{short_thing}, $ec_msg);
+    _has_value_for_key( 'BODY', 'long_text', qr{kangarookangarookangarookangarookangaroo\.\.\.\[truncated\]}, $ec_msg);
+    _has_value_for_key('QUERY', 'fruit',     qr{bananabananabananabananabananabananabana\.\.\.\[truncated\]}, $ec_msg);
+    _has_value_for_key('QUERY', 'integer',   qr{69}, $ec_msg);
+    _has_value_for_key('QUERY', 'evil',      qr{two(?:\\r)?\\nlines}, $ec_msg);
 }
 
 # helper methods for RT-72781 testing
@@ -348,54 +348,77 @@ sub _has_no_referer_ok {
         'referer information exists'
     );
 }
-sub _has_GET_output {
-    _has_param_section('GET',@_);
+sub _has_QUERY_output {
+    _has_param_section('QUERY',@_);
 }
-sub _has_POST_output {
-    _has_param_section('POST',@_);
+sub _has_BODY_output {
+    SKIP: {
+        skip 'RT#75607 body_parameters overwritten', 1
+            if _skip_for_RT75607();
+
+        _has_param_section('BODY',@_);
+    }
 }
 sub _has_param_section {
     my $type = shift;
     like(
         shift,
         qr{Params \(${type}\):},
-        'GET params block exists'
+        "$type params block exists"
     );
 }
 sub _has_keys_for_section {
     my ($type, $keys, $msg) = @_;
     return
         unless (ref $keys eq 'ARRAY');
-    foreach my $key (@{$keys}) {
+    SKIP: {
+        skip 'RT#75607 body_parameters overwritten', scalar @{$keys}
+            if _skip_for_RT75607();
+
+        foreach my $key (@{$keys}) {
+            like(
+                $msg,
+                qr{
+                    Params\s+\(\Q$type\E\): # section header
+                    .+?                     # non-greedy anything-ness
+                    ^\s+\Q$key\E:.+?$       # the line with our key on it
+                    .+?                     # non-greedy anything-ness
+                    ^$                      # blank line at end of section
+                }xms,
+                "'$key' exists in $type section"
+            );
+        }
+    }
+}
+sub _has_value_for_key {
+    my ($type, $key, $value, $msg) = @_;
+    SKIP: {
+        skip 'RT#75607 body_parameters overwritten', 1
+            if _skip_for_RT75607();
+
         like(
             $msg,
             qr{
                 Params\s+\(\Q$type\E\): # section header
                 .+?                     # non-greedy anything-ness
-                ^\s+\Q$key\E:.+?$       # the line with our key on it
+                ^\s+\Q$key\E:           # the line with our key on it
+                \s+                     # whitespace after the key label
+                $value                  # a specific value for the key
+                \s*$                    # optional whitespace up to the end of the line
                 .+?                     # non-greedy anything-ness
                 ^$                      # blank line at end of section
             }xms,
-            "'$key' exists in $type section"
+            "'$key' has value '$value' in $type section"
         );
     }
 }
-sub _has_value_for_key {
-    my ($type, $key, $value, $msg) = @_;
-    like(
-        $msg,
-        qr{
-            Params\s+\(\Q$type\E\): # section header
-            .+?                     # non-greedy anything-ness
-            ^\s+\Q$key\E:           # the line with our key on it
-            \s+                     # whitespace after the key label
-            \Q$value\E              # a specific value for the key
-            \s*$                    # optional whitespace up to the end of the line
-            .+?                     # non-greedy anything-ness
-            ^$                      # blank line at end of section
-        }xms,
-        "'$key' has value '$value' in $type section"
-    );
+
+# see here for details:
+#  https://rt.cpan.org/Public/Bug/Display.html?id=75607
+sub _skip_for_RT75607 {
+    use version;
+    my $version = version->declare(Catalyst->VERSION);
+    return ($version >= qv("v5.90009") and $version <= qv("v5.90010"));
 }
 
 done_testing;

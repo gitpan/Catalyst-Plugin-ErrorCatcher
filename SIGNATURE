@@ -14,28 +14,28 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 fbc01e33a42b9deb1425f6e6620e45ced87f2eb2 Changes
-SHA1 674038baa02a51cc6f56ee3dae2479ff0a71e432 LICENSE
+SHA1 12cd7fe90a4c81a110dc060b1ca968b1ae561c86 Changes
+SHA1 a03bfc3c074b3b08086d5980f8afdf8cf4a27cec LICENSE
 SHA1 d8b15a1eeecaf6f49dbc2b84096f6551cb7e2cd6 MANIFEST
 SHA1 24a5a60c1c311b8915392fc17bc4e4ca4bbe10e4 MANIFEST.SKIP
-SHA1 b2b3f083ac7d591b8c26e9a6a16ff0a1350a2a20 META.yml
-SHA1 87f17c61688b238a4f07f3b2f9137f0937697667 Makefile.PL
-SHA1 6f29346c543e893d0c1d766fad974df4d7e59c20 README
-SHA1 3f173c7617f6bb3428646d76019f5bbabb179f9f README.mkdn
-SHA1 e1de6167ad2b4bf79840edbe68d7c540e4bc251f lib/Catalyst/Plugin/ErrorCatcher.pm
-SHA1 f7865c1341445b4c661b2c40270b1c2babc47534 lib/Catalyst/Plugin/ErrorCatcher/Email.pm
-SHA1 12dc87d94fb4591a49e9f7d388decd71fe5f3d15 lib/Catalyst/Plugin/ErrorCatcher/File.pm
-SHA1 7321865028d7cfd9248073af5f192ebf0c7a6c01 lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/CaughtException.pm
-SHA1 92f1cc55e20348e070f658c71316b3c2e2624ea9 lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/Pg/ForeignKeyConstraint.pm
-SHA1 12faeb59360828f91f92467daea67c8311ac9766 lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/Pg/MissingColumn.pm
-SHA1 51a390ebf0fba04d360de00d05ceb67f50f4ec5e lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/Pg/TransactionAborted.pm
-SHA1 c0df97fabcde828b2945e31dd5f7de843efa21dc lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/TxnDo.pm
+SHA1 2407e864bfba93acbe18b7728ccf8f05828c85c4 META.yml
+SHA1 0c666f90adbf0043181096d692dbe292cfb1b58d Makefile.PL
+SHA1 c572c77e04689c3b6dfb022f7c7d251573e43f53 README
+SHA1 d4fd2a01fd51e61d74d872c1b1a5b7cb8375f24d README.mkdn
+SHA1 f70c0d7d9524617d0a67e65cfdfaa07238f23995 lib/Catalyst/Plugin/ErrorCatcher.pm
+SHA1 db8968e7842686054fb487200b79605725a2fb3b lib/Catalyst/Plugin/ErrorCatcher/Email.pm
+SHA1 690b0e2b5d9af9897651ea1eaa42bdb7d990d68d lib/Catalyst/Plugin/ErrorCatcher/File.pm
+SHA1 e605bd73b01b074ad0b57aeae9050edb4b78d9b3 lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/CaughtException.pm
+SHA1 686f0b29506f3ce19ceeab494743d2444c03ed7a lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/Pg/ForeignKeyConstraint.pm
+SHA1 d7c45d7ad98f6e3210689d94f770965613b19dd5 lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/Pg/MissingColumn.pm
+SHA1 0ac711586de63bced77221b6c382693fa9be93d1 lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/Pg/TransactionAborted.pm
+SHA1 ef9b90b65b8979bc00d0ca1de5ef2473920f1074 lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/TxnDo.pm
 SHA1 86cd488198ef1835477613f6a2256994986660aa t/00-load.t
 SHA1 26425978dac25cdee265b48081e2a89e25cd4a35 t/00.basic.t
 SHA1 c3ae4b51a81956912e36bca143478c36c85d84e0 t/01.no.tabs.t
 SHA1 56ff89dd6e4425e62134816a56391731a02967d5 t/03.config.t
 SHA1 531ce609b8c8b2fecc1ddf7415e839b09962a7e7 t/04.cleaned.t
-SHA1 f4a56e33cb9ee0be4f913ce99220eaadf6383f52 t/04.trace.t
+SHA1 f38e495f6e22e8a888887325448ac6838436dd63 t/04.trace.t
 SHA1 4d84e6cba5c8bd1bde3d9ae483cc7a5b0afd5567 t/05.emit.email.cc.t
 SHA1 c7d1665389d5f7a9c67d7867747266a5390cdae6 t/05.emit.email.t
 SHA1 19d7edb72b738a9f6ef0a178d63a76c7bbd45b36 t/06.email.file.path.t
@@ -59,14 +59,14 @@ SHA1 d7d5ae0ca1cd7434db590964abd0217727fb307b t/lib/testapp-session.conf
 SHA1 bf4c1c102f14922f9cf09994fcd63a4f1be3546d t/lib/testapp.conf
 SHA1 af2865e9a987a3976f029b6a7890c3f57737cd95 t/lib/testapp_emitinit.conf
 SHA1 5454005a457f0f8c6915a0de69ab5fc599e6b07b t/lib/testapp_mooseemitinit.conf
-SHA1 961a1e2c92d836c8cad2d34b784cbc75345dec63 t/release-kwalitee.t
+SHA1 6ea81e3865946a14536f97ccc65fee4b218c8148 t/release-kwalitee.t
 SHA1 455d1dd1867212a665ad5ea4126b572411de300c t/release-no-tabs.t
 SHA1 9433c240fe590bc404ab68ff63984df763e347ed t/release-pod-coverage.t
 SHA1 b30cbdfaf935017c4568c0c91b242438cb87786e t/release-pod-syntax.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEARECAAYFAk7ZWAgACgkQh4j7xTiFuxGyLgCdEai+fD6wACtqe9dXZ5f+eOaX
-ETAAoK6nnPd7MkhIxYUVr4z7qFRoVVfB
-=MEIU
+iEYEARECAAYFAk9ZKZYACgkQh4j7xTiFuxHOeACfdsQ/6P4aG0Lju9b4mqTBuKwm
+WyUAnjEvfF2+37ZN39bQU0Pd+HLJ6JHu
+=Ij1a
 -----END PGP SIGNATURE-----

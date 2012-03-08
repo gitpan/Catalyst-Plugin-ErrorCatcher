@@ -1,6 +1,6 @@
 package Catalyst::Plugin::ErrorCatcher;
 {
-  $Catalyst::Plugin::ErrorCatcher::VERSION = '0.0.8.10';
+  $Catalyst::Plugin::ErrorCatcher::VERSION = '0.0.8.11';
 }
 {
   $Catalyst::Plugin::ErrorCatcher::DIST = 'Catalyst-Plugin-ErrorCatcher';
@@ -437,13 +437,13 @@ sub _prepare_message {
         }
     }
 
-    my $params; # share with GET and POST output
+    my $params; # share with body-param and query-param output
     append_feedback_emptyline(\$feedback);
-    # output any GET params
-    append_output_params(\$feedback, 'GET', $c->request->query_parameters);
+    # output any query params
+    append_output_params(\$feedback, 'QUERY', $c->request->query_parameters);
 
-    # output any POST params
-    append_output_params(\$feedback, 'POST', $c->request->body_parameters);
+    # output any body params
+    append_output_params(\$feedback, 'BODY', $c->request->body_parameters);
 
     if ('ARRAY' eq ref($c->_errorcatcher)) {
         # push on information and context
@@ -576,7 +576,7 @@ Catalyst::Plugin::ErrorCatcher - Catch application errors and emit them somewher
 
 =head1 VERSION
 
-version 0.0.8.10
+version 0.0.8.11
 
 =head1 SYNOPSIS
 
@@ -751,7 +751,15 @@ fit.
 
 =head1 KNOWN ISSUES
 
-The test-suite coverage is quite low.
+=over 4
+
+=item BODY tests failing (Catalyst >=5.90008)
+
+Summary: https://github.com/chiselwright/catalyst-plugin-errorcatcher/pull/1
+
+Bug report: https://rt.cpan.org/Public/Bug/Display.html?id=75607
+
+=back
 
 =head1 SEE ALSO
 
@@ -765,6 +773,10 @@ code was used.
 
 Ash Berlin for guiding me in the right direction after a known hacky first
 implementation.
+
+=head1 CONTRIBUTORS
+
+Fitz Elliot L<https://github.com/felliott/>
 
 =head1 AUTHOR
 
