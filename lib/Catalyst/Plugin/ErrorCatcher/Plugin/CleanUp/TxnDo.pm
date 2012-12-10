@@ -1,6 +1,6 @@
 package Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::TxnDo;
 {
-  $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::TxnDo::VERSION = '0.0.8.12';
+  $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::TxnDo::VERSION = '0.0.8.13';
 }
 {
   $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::TxnDo::DIST = 'Catalyst-Plugin-ErrorCatcher';
@@ -33,6 +33,7 @@ sub tidy_message {
 # ABSTRACT: cleanup txn_do messages from Pg
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -41,7 +42,7 @@ Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::TxnDo - cleanup txn_do messages
 
 =head1 VERSION
 
-version 0.0.8.12
+version 0.0.8.13
 
 =head1 AUTHOR
 
@@ -55,4 +56,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

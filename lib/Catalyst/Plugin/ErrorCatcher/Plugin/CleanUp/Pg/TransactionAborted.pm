@@ -1,6 +1,6 @@
 package Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::Pg::TransactionAborted;
 {
-  $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::Pg::TransactionAborted::VERSION = '0.0.8.12';
+  $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::Pg::TransactionAborted::VERSION = '0.0.8.13';
 }
 {
   $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::Pg::TransactionAborted::DIST = 'Catalyst-Plugin-ErrorCatcher';
@@ -37,6 +37,7 @@ sub tidy_message {
 # ABSTRACT: cleanup transaction aborted messages from Pg
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -45,7 +46,7 @@ Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::Pg::TransactionAborted - cleanu
 
 =head1 VERSION
 
-version 0.0.8.12
+version 0.0.8.13
 
 =head1 AUTHOR
 
@@ -59,4 +60,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

@@ -14,6 +14,7 @@ lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/CaughtException.pm
 lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/Pg/ForeignKeyConstraint.pm
 lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/Pg/MissingColumn.pm
 lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/Pg/TransactionAborted.pm
+lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/Pg/UniqueConstraintViolation.pm
 lib/Catalyst/Plugin/ErrorCatcher/Plugin/CleanUp/TxnDo.pm
 t/00-load.t
 t/00.basic.t

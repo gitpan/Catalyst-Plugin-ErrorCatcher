@@ -1,6 +1,6 @@
 package Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::Pg::ForeignKeyConstraint;
 {
-  $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::Pg::ForeignKeyConstraint::VERSION = '0.0.8.12';
+  $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::Pg::ForeignKeyConstraint::VERSION = '0.0.8.13';
 }
 {
   $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::Pg::ForeignKeyConstraint::DIST = 'Catalyst-Plugin-ErrorCatcher';
@@ -38,6 +38,7 @@ sub tidy_message {
 # ABSTRACT: cleanup foreign key violation messages from Pg
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -46,7 +47,7 @@ Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::Pg::ForeignKeyConstraint - clea
 
 =head1 VERSION
 
-version 0.0.8.12
+version 0.0.8.13
 
 =head1 AUTHOR
 
@@ -60,4 +61,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

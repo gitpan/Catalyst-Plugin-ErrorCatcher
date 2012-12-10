@@ -1,6 +1,6 @@
 package Catalyst::Plugin::ErrorCatcher::File;
 {
-  $Catalyst::Plugin::ErrorCatcher::File::VERSION = '0.0.8.12';
+  $Catalyst::Plugin::ErrorCatcher::File::VERSION = '0.0.8.13';
 }
 {
   $Catalyst::Plugin::ErrorCatcher::File::DIST = 'Catalyst-Plugin-ErrorCatcher';
@@ -78,7 +78,6 @@ sub _write_file {
 
 1;
 
-
 =pod
 
 =head1 NAME
@@ -87,7 +86,7 @@ Catalyst::Plugin::ErrorCatcher::File - a file emitter for Catalyst::Plugin::Erro
 
 =head1 VERSION
 
-version 0.0.8.12
+version 0.0.8.13
 
 =head1 SYNOPSIS
 
@@ -123,7 +122,6 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
 
 __END__
 

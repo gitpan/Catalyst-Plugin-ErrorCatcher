@@ -3,7 +3,7 @@ NAME
     somewhere
 
 VERSION
-    version 0.0.8.12
+    version 0.0.8.13
 
 SYNOPSIS
       use Catalyst qw/-Debug StackTrace ErrorCatcher/;
