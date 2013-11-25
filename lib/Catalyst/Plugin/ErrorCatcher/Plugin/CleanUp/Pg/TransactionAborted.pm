@@ -1,6 +1,6 @@
 package Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::Pg::TransactionAborted;
 {
-  $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::Pg::TransactionAborted::VERSION = '0.0.8.13';
+  $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::Pg::TransactionAborted::VERSION = '0.0.8.14';
 }
 {
   $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::Pg::TransactionAborted::DIST = 'Catalyst-Plugin-ErrorCatcher';
@@ -46,7 +46,7 @@ Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::Pg::TransactionAborted - cleanu
 
 =head1 VERSION
 
-version 0.0.8.13
+version 0.0.8.14
 
 =head1 AUTHOR
 
