@@ -1,6 +1,6 @@
 package Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::CaughtException;
 {
-  $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::CaughtException::VERSION = '0.0.8.14';
+  $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::CaughtException::VERSION = '0.0.8.15';
 }
 {
   $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::CaughtException::DIST = 'Catalyst-Plugin-ErrorCatcher';
@@ -43,7 +43,7 @@ Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::CaughtException - cleanup caugh
 
 =head1 VERSION
 
-version 0.0.8.14
+version 0.0.8.15
 
 =head1 AUTHOR
 

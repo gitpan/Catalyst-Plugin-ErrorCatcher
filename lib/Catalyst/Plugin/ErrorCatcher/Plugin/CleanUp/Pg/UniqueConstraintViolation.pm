@@ -1,6 +1,6 @@
 package Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::Pg::UniqueConstraintViolation;
 {
-  $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::Pg::UniqueConstraintViolation::VERSION = '0.0.8.14';
+  $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::Pg::UniqueConstraintViolation::VERSION = '0.0.8.15';
 }
 {
   $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::Pg::UniqueConstraintViolation::DIST = 'Catalyst-Plugin-ErrorCatcher';
@@ -51,7 +51,7 @@ Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::Pg::UniqueConstraintViolation -
 
 =head1 VERSION
 
-version 0.0.8.14
+version 0.0.8.15
 
 =head1 AUTHOR
 

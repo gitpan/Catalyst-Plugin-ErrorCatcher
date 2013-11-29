@@ -60,4 +60,4 @@ requires:
 resources:
   bugtracker: http://github.com/chiselwright/Catalyst-Plugin-ErrorCatcher/issues
   repository: git://github.com/chiselwright/catalyst-plugin-errorcatcher.git
-version: 0.0.8.14
+version: 0.0.8.15

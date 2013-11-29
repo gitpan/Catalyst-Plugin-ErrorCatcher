@@ -1,6 +1,6 @@
 package Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::TxnDo;
 {
-  $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::TxnDo::VERSION = '0.0.8.14';
+  $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::TxnDo::VERSION = '0.0.8.15';
 }
 {
   $Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::TxnDo::DIST = 'Catalyst-Plugin-ErrorCatcher';
@@ -42,7 +42,7 @@ Catalyst::Plugin::ErrorCatcher::Plugin::CleanUp::TxnDo - cleanup txn_do messages
 
 =head1 VERSION
 
-version 0.0.8.14
+version 0.0.8.15
 
 =head1 AUTHOR
 
